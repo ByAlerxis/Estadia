@@ -1,0 +1,129 @@
+<!-- <nav class="cyan darken-2">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">1</a></li>
+          <li><a href="badges.html">2</a></li>
+          <li><a (click)="logout()" href="#">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+</nav> -->
+<div class="row">
+    <!-- Formulario -->
+    <div class="col s12 m6 l6 center">
+        <div class="card white">
+
+            <div class="card-content">
+                <span class="card-title"><b>Formulario</b></span>
+                <!-- (ngSubmit)="addCasa(userForm)"-->
+                <form #casaForm="ngForm" (ngSubmit)="addCasa(casaForm)">
+
+                    <div class="row">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="casasService.selectedCasa._id">
+
+                        <div class="input-field col s12">
+                            <input id="nombre_negocio" type="text" nombre_negocio="ngModel" name="nombre_negocio"
+                                placeholder="Ingrese el nombre del negocio" [(ngModel)]="casasService.selectedCasa.nombre_negocio">
+                            <label for="nombre_negocio">Nombre del negocio</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="direccion" type="text" name="direccion" #direccion="ngModel"
+                                placeholder="Ingrese direccion de la casa de cambio"
+                                [(ngModel)]="casasService.selectedCasa.direccion">
+                            <label for="direccion">Direccion</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="email" type="text" name="email" #email="ngModel"
+                                placeholder="Ingrese correo de contacto" [(ngModel)]="casasService.selectedCasa.email">
+                            <label for="email">Correo electronico</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="password" type="text" name="password" #password="ngModel"
+                                placeholder="Ingrese contraseña" [(ngModel)]="casasService.selectedCasa.password">
+                            <label for="password">Contraseña</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="logo" type="text" name="logo" #logo="ngModel"
+                                placeholder="Ingrese logo de la empresa" [(ngModel)]="casasService.selectedCasa.logo">
+                            <label for="logo">logo</label>
+                        </div>
+
+                        <!-- <div class="input-field col s12">
+                          <input id="nombre_negocio" type="text" nombre_negocio="nombre_negocio" #name="ngModel" placeholder="Ingrese nombre"
+                          [(ngModel)]="casasService.selectedCasa.nombre_negocio">
+                          <label for="nombre_negocio">Nombre completo</label>
+                      </div> -->
+
+                        <div class="input-field col s12">
+                            <input id="telefono" type="number" name="telefono" #telefono="ngModel"
+                                placeholder="Ingrese el numero de telefono"
+                                [(ngModel)]="casasService.selectedCasa.telefono">
+                            <label for="telefono">Telefono</label>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="card-action">
+                <div class="row">
+                    <div class="col s6">
+                        <button (click)="resetForm(casaForm)" style="width: 100%;"
+                            class="btn left green darken-3 white-text">Limpiar formulario</button>
+                    </div>
+
+                    <div class="col s6">
+                        <button (click)="addCasa(casaForm)" style="width: 100%;"
+                            class="btn left blue darken-3 white-text">Guardar casa</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Tabla -->
+    <div class="col s12 m6 l6">
+        <div class="card white">
+            <div class="card-content black-text">
+                <div class="input-field">
+                    <i class="material-icons prefix">search </i>
+                    <input type="text" id="searchfield" (keyup)="getCasasByNameAndEmail()">
+                    <label for="searchfield">Buscar por nombre de usuario o email</label>
+                </div>
+
+                <table>
+                    <thead>
+                        <th>Nombre del negocio</th>
+                        <th>Direccion</th>
+                        <th>Correo</th>
+                        <th>Logo</th>
+                        <th>Telefono</th>
+                        <th>Operaciones</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let casas of casasService.casas">
+                            <td>{{ casas.nombre_negocio }}</td>
+                            <td>{{ casas.direccion }}</td>
+                            <td>{{ casas.email }}</td>
+                            <td>{{ casas.logo }}</td>
+                            <td>{{ casas.telefono }}</td>
+
+                            <td>
+                                <a (click)="updateCasa(casas)" style="margin-left: 10px; margin-right: 10px;"><i
+                                        class="material-icons amber-text">edit</i></a>
+                                <a (click)="deleteCasa(casas._id)" style="margin-left: 10px; margin-right: 10px;"><i
+                                        class="material-icons red-text">delete</i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>

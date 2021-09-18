@@ -1,0 +1,103 @@
+<!-- <nav class="cyan darken-2">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">1</a></li>
+          <li><a href="badges.html">2</a></li>
+          <li><a (click)="logout()" href="#">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+</nav> -->
+<div class="row">
+    <!-- Formulario -->
+    <div class="col s12 m6 l6 center">
+        <div class="card white">
+
+            <div class="card-content">
+                <span class="card-title"><b>Formulario</b></span>
+                <form #userForm="ngForm">
+
+                    <div class="row">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="adminsService.selectedAdmin._id">
+
+                        <div class="input-field col s12">
+                            <input id="nombre" type="text" name="nombre" #name="ngModel" placeholder="Ingrese nombre"
+                                [(ngModel)]="adminsService.selectedAdmin.nombre">
+                            <label for="nombre">Nombre completo</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="email" type="text" name="email" #email="ngModel" placeholder="Ingrese correo"
+                                [(ngModel)]="adminsService.selectedAdmin.email">
+                            <label for="email">Correo electronico</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="password" type="text" name="password" #password="ngModel"
+                                placeholder="Ingrese contraseña" [(ngModel)]="adminsService.selectedAdmin.password">
+                            <label for="password">Contraseña</label>
+                        </div>
+                        <select class="browser-default" id="rol" name="rol" value="Admin" #rol="ngModel" [(ngModel)]="adminsService.selectedAdmin.rol">
+                            <option value="Admin" disabled selected>Rol</option>
+                            <option value="SuperAdmin">Super Admin</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="card-action">
+                <div class="row">
+                    <div class="col s6">
+                        <button (click)="resetForm(userForm)" style="width: 100%;"
+                            class="btn left green darken-3 white-text">Limpiar formulario</button>
+                    </div>
+
+                    <div class="col s6">
+                        <button (click)="addAdmin(userForm)" style="width: 100%;"
+                            class="btn left blue darken-3 white-text">Guardar usuario</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col s12 m12 l6">
+        <div class="card white">
+            <div class="card-content">
+                <div class="input-field">
+                    <i class="material-icons prefix">search</i>
+                    <input type="text" id="searchfield" (keyup)="getUsersByNameAndEmail()">
+                    <label for="searchfield">Buscar por nombre y correo</label>
+                </div>
+                <table class="content-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let admins of adminsService.admins">
+                            <td>{{ admins.id }}</td>
+                            <td>{{ admins.nombre }}</td>
+                            <td>{{ admins.email }}</td>
+                            <td>{{ admins.rol }}</td>
+                            <a (click)="updateAdmin(admins)" style="margin-right: 10px;"><i
+                                    class="material-icons amber-text">mode_edit</i></a>
+                            <a (click)="deleteAdmin(admins._id)" style="margin-right: 10px;"><i
+                                    class="material-icons red-text">delete</i></a>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
