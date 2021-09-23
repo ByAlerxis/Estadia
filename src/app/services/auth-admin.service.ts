@@ -2,14 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Admins } from '../models/admins';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthAdminService {
 
+  helper = new JwtHelperService();
+  decodedToken: any;
+
   readonly URL = 'https://api-estadia.herokuapp.com/auth/admin';
   admin: Admins;
+
 
   constructor(private http: HttpClient, private router: Router)
   {

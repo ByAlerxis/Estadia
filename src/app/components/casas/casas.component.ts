@@ -3,9 +3,13 @@ import { CasasService } from 'src/app/services/casas.service';
 import {Casas} from 'src/app/models/casas';
 import { NgForm } from '@angular/forms';
 import { AuthCasaService } from 'src/app/services/auth-casa.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+import { AuthAdminService } from 'src/app/services/auth-admin.service';
 
 
 declare var M: any;
+
 
 @Component({
   selector: 'app-casas',
@@ -14,10 +18,23 @@ declare var M: any;
 })
 export class CasasComponent implements OnInit {
 
-  constructor( public casasService: CasasService, public authCasaService: AuthCasaService) { }
+  helper = new JwtHelperService();
+  decodedToken: any;
+  token: any;
+
+  constructor( public casasService: CasasService, public authCasaService: AuthCasaService, private router: Router,public authAdminService:AuthAdminService) { }
 
   ngOnInit(): void {
     this.getCasas();
+
+    this.token = localStorage.getItem('token');
+    this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
+    
+    if(this.authAdminService.decodedToken.rol == "Admin"){
+     
+    } else{
+      this.router.navigate(['/singin']);
+    }
   }
 
   resetForm(form?: NgForm){

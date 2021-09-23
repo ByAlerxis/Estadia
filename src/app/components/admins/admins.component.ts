@@ -51,7 +51,7 @@ export class AdminsComponent implements OnInit {
   getAdmins() {
     this.adminsService.getAdmins().subscribe(res => {
       this.adminsService.admins = res as Admins[];
-      console.log(this.adminsService.admins);
+      // console.log(this.adminsService.admins);
     })
   }
 

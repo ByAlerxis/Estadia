@@ -3,10 +3,12 @@
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a routerLink="./casas">Casa de cambio</a></li>
-          <li><a routerLink="./admins">Administradores</a></li>
+          <li><a routerLink="./admins" (click)="decodeT()">Administradores</a></li>
           <li><a (click)="logout()" href="#">Cerrar Sesión</a></li>
         </ul>
       </div>
 </nav>
+
+<!-- <p>hola {{authAdminService.decodedToken?.nombre}}</p> -->
 
 <router-outlet></router-outlet>
