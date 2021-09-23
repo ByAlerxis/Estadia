@@ -30,7 +30,7 @@ export class CasasComponent implements OnInit {
     this.token = localStorage.getItem('token');
     this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
     
-    if(this.authAdminService.decodedToken.rol == "Admin"){
+    if(this.authAdminService.decodedToken.rol == "Admin" || this.authAdminService.decodedToken.rol == "SuperAdmin"){
      
     } else{
       this.router.navigate(['/singin']);
