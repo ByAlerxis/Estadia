@@ -35,6 +35,8 @@ export class CasasComponent implements OnInit {
     } else{
       this.router.navigate(['/singin']);
     }
+
+    
   }
 
   resetForm(form?: NgForm){

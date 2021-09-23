@@ -1,3 +1,4 @@
+<div *ngIf="this.authAdminService.decodedToken.rol == 'Admin'">
 <nav class="cyan darken-2">
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
@@ -6,6 +7,9 @@
         </ul>
       </div>
 </nav>
+</div>
+
+
 <div class="row">
     <!-- Formulario -->
     <div class="col s12 m6 l6 center">
