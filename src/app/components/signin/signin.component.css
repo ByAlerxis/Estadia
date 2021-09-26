@@ -1,0 +1,62 @@
+.bodyLogin{
+    background: rgb(9,80,218);
+    background: linear-gradient(90deg, rgba(9,80,218,1) 0%, rgba(0,255,248,1) 100%);
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.loginDiv{
+    top: 20vh;
+    position: relative;
+    background-color: white;
+    width: 100%;
+    border-radius: 40px;
+    height: auto;
+}
+
+.loginContainer{
+    padding: 30px;
+}
+
+.loginTitle{
+    width: 100%;
+    text-align: center;
+}
+
+.loginTitle h5{
+    font-weight: bold;
+}
+
+.customInput{
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #eeeeee;
+    border-radius: 100px;
+    padding: 14px !important;
+}
+
+.customInput input{
+    position: relative;
+    padding-left: 30px;
+    border-style: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.customInput i {
+    position: absolute;
+    color: darkgray;
+    z-index: 999;
+    transition: all 0.5s ease 0s;
+}
+
+.customInput:hover i {
+    color: black;
+    transition: all 0.5s ease 0s;
+}
+
+.btnLogin{
+    border-radius: 100px;
+}
