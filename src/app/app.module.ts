@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { CasasComponent } from './components/casas/casas.component';
+import { UserCasaComponent } from './components/user-casa/user-casa.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CasasComponent } from './components/casas/casas.component';
     AdminsComponent,
     SigninComponent,
     HomeComponent,
-    CasasComponent
+    CasasComponent,
+    UserCasaComponent
   ],
   imports: [
     BrowserModule,

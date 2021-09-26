@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthAdminService } from 'src/app/services/auth-admin.service';
 import { AuthCasaService } from 'src/app/services/auth-casa.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 declare var M: any;
 
@@ -14,12 +15,28 @@ declare var M: any;
 })
 export class SigninComponent implements OnInit {
 
+  helper = new JwtHelperService();
+  decodedToken: any;
+  token: any;
+
   constructor(private router: Router, public authAdminService: AuthAdminService, public authCasaService: AuthCasaService) { }
 
   ngOnInit(): void {
-    if (this.authAdminService.getToken()){
+    // if (this.authAdminService.getToken()){
+    //   this.router.navigate(['/casas']);
+    // }
+
+    this.token = localStorage.getItem('token');
+    this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
+    
+    if(this.authAdminService.decodedToken.rol == "Admin"){
       this.router.navigate(['/casas']);
+    } else if (this.authAdminService.decodedToken.rol == "SuperAdmin") {
+      this.router.navigate(['/home']);
+    } else if (this.authAdminService.decodedToken.rol == undefined) {
+      this.router.navigate(['/cambio']);
     }
+
   }
 
   signin(form?: NgForm){
@@ -39,7 +56,7 @@ export class SigninComponent implements OnInit {
       this.authCasaService.signIn(form.value).subscribe(
         res => {
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/casas']);
+          this.router.navigate(['/cambio']);
         },
         err => {
           M.toast({html: err.error});

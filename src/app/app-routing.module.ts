@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthAdminGuard } from './auth-admin.guard';
-import { AuthCasaGuard } from './auth-casa.guard';
 
 
 import { SigninComponent } from './components/signin/signin.component';
 import { AdminsComponent } from './components/admins/admins.component';
 import { HomeComponent } from './components/home/home.component';
 import { CasasComponent } from './components/casas/casas.component';
-import { Admins } from './models/admins';
+import { UserCasaComponent } from './components/user-casa/user-casa.component';
 
 
 const routes: Routes = [
@@ -17,6 +16,7 @@ const routes: Routes = [
   
   { path: 'admins', component: AdminsComponent, canActivate: [AuthAdminGuard]},
   { path: 'casas', component: CasasComponent, canActivate: [AuthAdminGuard]},
+  { path: 'cambio', component:UserCasaComponent, canActivate: [AuthAdminGuard]},
   
   { path: 'home', component: HomeComponent, canActivate: [AuthAdminGuard], children:[
     { path: 'admins', component: AdminsComponent, canActivate: [AuthAdminGuard]},
