@@ -40,6 +40,11 @@ export class SigninComponent implements OnInit {
   }
 
   signin(form?: NgForm){
+
+
+
+
+
     if(form){
       this.authAdminService.signIn(form.value).subscribe(
         res => {
@@ -47,7 +52,7 @@ export class SigninComponent implements OnInit {
           this.router.navigate(['/home/admins']);
         },
         err => {
-          M.toast({html: err.error});
+           M.toast({html: err.error});
         }
       )
     }

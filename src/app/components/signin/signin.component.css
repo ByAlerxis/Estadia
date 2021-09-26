@@ -1,6 +1,6 @@
 .bodyLogin{
-    background: rgb(9,80,218);
-    background: linear-gradient(90deg, rgba(9,80,218,1) 0%, rgba(0,255,248,1) 100%);
+    background: rgb(255,166,146);
+    background: linear-gradient(157deg, rgba(255,166,146,1) 0%, rgba(65,61,151,1) 100%);
 
     width: 100vw;
     height: 100vh;
@@ -59,4 +59,9 @@
 
 .btnLogin{
     border-radius: 100px;
+}
+
+.responsive-img{
+    width: 85%;
+    margin-top: 25px;
 }
