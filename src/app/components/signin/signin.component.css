@@ -43,6 +43,7 @@
     border-style: none;
     background-color: transparent;
     outline: none;
+    width: 100%;
 }
 
 .customInput i {

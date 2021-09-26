@@ -20,11 +20,11 @@
                         <div class="row">
                             <div class="col s12 customInput">
                                 <i class="material-icons prefix">email</i>
-                                <input class="browser-default" type="email" name="email" id="email" placeholder="Correo" autocomplete="off" #correo="ngModel" [(ngModel)]="authAdminService.admin.email">
+                                <input class="browser-default" type="email" name="email" id="email" placeholder="Correo" autocomplete="off" #correo="ngModel" [(ngModel)]="authAdminService.admin.email" maxlength="50">
                             </div>
                             <div class="col s12 customInput">
                                 <i class="material-icons prefix">vpn_key</i>
-                                <input class="browser-default" type="password" name="password" id="password" placeholder="Contraseña" autocomplete="off" #correo="ngModel" [(ngModel)]="authAdminService.admin.password">
+                                <input class="browser-default" type="password" name="password" id="password" placeholder="Contraseña" autocomplete="off" #correo="ngModel" [(ngModel)]="authAdminService.admin.password" maxlength="50">
                             </div>
                         </div>
                         <div class="row">
