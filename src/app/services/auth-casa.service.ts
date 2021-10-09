@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Casas } from '../models/casas';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthAdminService } from './auth-admin.service';
 
 
 @Injectable({
@@ -9,10 +11,16 @@ import { Casas } from '../models/casas';
 })
 export class AuthCasaService {
 
+  helper = new JwtHelperService();
+  decodedToken: any;
+  token: any;
+  id = '';
+  dllV: any;
+
   readonly URL = 'https://api-estadia.herokuapp.com/auth/casa';
   casa: Casas;
 
-  constructor(private http: HttpClient, private router: Router)
+  constructor(private http: HttpClient, private router: Router, public authAdminService:AuthAdminService)
   {
     this.casa = new Casas();
   }

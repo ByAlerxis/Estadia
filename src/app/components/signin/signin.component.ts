@@ -11,15 +11,18 @@ declare var M: any;
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css'],
-  providers: [AuthAdminService, AuthCasaService]
+  providers: [AuthAdminService, AuthCasaService],
 })
 export class SigninComponent implements OnInit {
-
   helper = new JwtHelperService();
   decodedToken: any;
   token: any;
 
-  constructor(private router: Router, public authAdminService: AuthAdminService, public authCasaService: AuthCasaService) { }
+  constructor(
+    private router: Router,
+    public authAdminService: AuthAdminService,
+    public authCasaService: AuthCasaService
+  ) {}
 
   ngOnInit(): void {
     // if (this.authAdminService.getToken()){
@@ -28,23 +31,19 @@ export class SigninComponent implements OnInit {
 
     this.token = localStorage.getItem('token');
     this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
-    
-    if(this.authAdminService.decodedToken.rol == "Admin"){
-      this.router.navigate(['/casas']);
-    } else if (this.authAdminService.decodedToken.rol == "SuperAdmin") {
-      this.router.navigate(['/home']);
-    } else if (this.authAdminService.decodedToken.rol == undefined) {
-      this.router.navigate(['/cambio']);
-    }
 
+    if (this.token) {
+      if (this.authAdminService.decodedToken.rol == 'Admin') {
+        this.router.navigate(['/casas']);
+      } else if (this.authAdminService.decodedToken.rol == 'SuperAdmin') {
+        this.router.navigate(['/home']);
+      } else if (this.authAdminService.decodedToken.rol == undefined) {
+        this.router.navigate(['/cambio']);
+      }
+    }
   }
 
-  signin(form?: NgForm){
-
-
-
-
-
+  signin(form?: NgForm) {
     if(form){
       this.authAdminService.signIn(form.value).subscribe(
         res => {
@@ -57,17 +56,16 @@ export class SigninComponent implements OnInit {
       )
     }
 
-    if(form){
+    if (form) {
       this.authCasaService.signIn(form.value).subscribe(
-        res => {
+        (res) => {
           localStorage.setItem('token', res.token);
           this.router.navigate(['/cambio']);
         },
-        err => {
-          M.toast({html: err.error});
+        (err) => {
+          M.toast({ html: err.error });
         }
-      )
+      );
     }
   }
-
 }

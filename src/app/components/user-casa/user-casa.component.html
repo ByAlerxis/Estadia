@@ -2,149 +2,146 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a (click)="logout()" href="#">Cerrar Sesión</a></li>
+            <li><a (click)="logout()" href="#">Cerrar Sesión</a></li>
         </ul>
-      </div>
+    </div>
 </nav>
 
 <div class="col s12 m12 l7 table2">
-  <body class="bodyLogin">
-    <div class="row">
-        <!-- PRECIOS -->
-        <div class="col s12 m12 l5 center card-action">
-            <div class="border">
-                     <!-- COMPRA -->
-                <div class="row card-content">
-                  <span class="card-title"><b>PRECIO COMPRA </b></span>
-                  <div class="row col s12 m10 l10 offset-l1 offset-m1">
-                    
-                  <div class="input-field col s12 customInput">
-                    <i class="material-icons prefix">monetization_on</i>
-                    <input class="browser-default" id="direccion" type="text" name="direccion"
-                       placeholder="Ingrese el precio de compra. ">
 
-                </div>
-              </div>
-            </div>
-                <div class="card-action">
-                    <div class="row">
-                        <div class="col s6">
-                            <a style="width: 100%;"
-                                class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s2 offset-m2">Limpiar
-                                formulario</a>
+    <body class="bodyLogin">
+        <div class="row">
+            <!-- PRECIOS -->
+            <div class="col s12 m12 l5 center card-action">
+                <form #userForm="ngForm">
+                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="casasService.selectedCasa._id">
+                    <input class="browser-default" id="nombre_negocio" type="hidden" nombre_negocio="ngModel"
+                        name="nombre_negocio" placeholder="Ingrese el nombre del negocio"
+                        [(ngModel)]="casasService.selectedCasa.nombre_negocio">
+                    <input class="browser-default" id="direccion" type="hidden" name="direccion" #direccion="ngModel"
+                        placeholder="Ingrese direccion de la casa de cambio"
+                        [(ngModel)]="casasService.selectedCasa.direccion">
+                    <input class="browser-default" id="email" type="hidden" name="email" #email="ngModel"
+                        placeholder="Ingrese correo de contacto" [(ngModel)]="casasService.selectedCasa.email">
+                    <input class="browser-default" id="password" type="hidden" name="password" #password="ngModel"
+                        placeholder="Ingrese contraseña" [(ngModel)]="casasService.selectedCasa.password">
+                    <input class="browser-default" id="logo" type="hidden" name="logo" #logo="ngModel"
+                        placeholder="Ingrese logo de la empresa" [(ngModel)]="casasService.selectedCasa.logo">
+
+                    <div class="border">
+                        <!-- COMPRA -->
+                        <div class="row card-content">
+                            <span class="card-title"><b>PRECIO COMPRA </b></span>
+                            <div class="row col s12 m10 l10 offset-l1 offset-m1">
+
+                                <div class="input-field col s12 customInput">
+                                    <i class="material-icons prefix">monetization_on</i>
+                                    <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="text" name="dllC"
+                                        placeholder="{{dollar.dllC}}" autocomplete="off">
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- VENTA  -->
+                        <div class="row card-content">
+                            <span class="card-title"><b>PRECIO VENTA </b></span>
+                            <div class="row col s12 m10 l10 offset-l1 offset-m1">
+
+                                <div class="input-field col s12 customInput">
+                                    <i class="material-icons prefix">monetization_on</i>
+                                    <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="text" name="dllV"
+                                        placeholder="{{dollar.dllV}}" autocomplete="off">
+
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div class="col s6">
-                            <a  style="width: 100%;"
-                                class="btn col l10 s12 m12 red accent-6 btnL offset-l1 offset-s1 offset-m1">Guardar
-                                casa</a>
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s6">
+                                    <a style="width: 100%;"
+                                        class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s2 offset-m2">Limpiar
+                                        formulario</a>
+                                </div>
+
+                                <div class="col s6">
+                                    <a (click)="updateGame()" style="width: 100%;"
+                                        class="btn col l10 s12 m12 red accent-6 btnL offset-l1 offset-s1 offset-m1">Guardar
+                                        casa</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </form>
+            </div>
+
+            <!-- Tabla -->
+            <div class="col s12 m12 l7 table2">
+                <div class="col s12 m12 l12">
+                    <div class="container">
+                        <table class="content-table table">
+                            <thead>
+                                <tr>
+                                    <th>Compra</th>
+                                    <th>Venta </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ dollar.dllC }}</td>
+                                    <td>{{ dollar.dllV }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
-                <br>
-                <br>
-                            <!-- VENTA  -->
-                  <div class="row card-content">
-                    <span class="card-title"><b>PRECIO VENTA </b></span>
-                    <div class="row col s12 m10 l10 offset-l1 offset-m1">
-                        
+
+                <div class="convertidor">
+
+                    <h4 id="titulo">CONVERSOR DE DIVISA</h4>
+                    <p id="p1">Convertir de </p>
+                    <div>
+                        <select class="browser-default" id="d1">
+                            <option value="" disabled selected>De</option>
+                            <option value="Dolar">Dolar</option>
+                            <option value="Peso">Peso</option>
+                        </select>
+                    </div>
+
+                    <div>
+
+                        <select class="browser-default" id="d2">
+                            <option value="" disabled selected>a</option>
+                            <option value="Dolar">Dolar</option>
+                            <option value="Peso">Peso</option>
+                        </select>
+
+                    </div>
+                    <p id="p2">a</p>
+
+
                     <div class="input-field col s12 customInput">
-                      <i class="material-icons prefix">monetization_on</i>
-                      <input class="browser-default" id="direccion" type="text" name="direccion"
-                         placeholder="Ingrese el precio de venta. ">
+                        <i class="material-icons prefix">monetization_on</i>
+                        <input class="browser-default" id="direccion" type="text" name="direccion"
+                            placeholder="Ingrese la cantidad.">
 
-                  </div>
-                </div>
-               
-              </div>
+                    </div>
+                    <br>
 
-              <div class="card-action">
-                  <div class="row">
-                      <div class="col s6">
-                          <a style="width: 100%;"
-                              class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s2 offset-m2">Limpiar
-                              formulario</a>
-                      </div>
 
-                      <div class="col s6">
-                          <a  style="width: 100%;"
-                              class="btn col l10 s12 m12 red accent-6 btnL offset-l1 offset-s1 offset-m1">Guardar
-                              casa</a>
-                      </div>
-                  </div>
-              </div>
-
-            </div>
-        </div>
-        
-        <!-- Tabla -->
-        <div class="col s12 m12 l7 table2">
-            <div class="col s12 m12 l12">
-                <div class="container">
-                   <table class="content-table table">
-                      <thead>
-                          <tr>
-                              <th>Compra</th>
-                              <th>Venta </th>
-                          </tr>
-
-                      </thead>
-                      <tbody>
-                          <tr >
-                              <td>18.0</td>
-                              <td>20.0</td>
-                          </tr>
-                      </tbody>
-                  </table>
+                    <h5>Resultado:</h5>
+                    <h5>$0.00</h5>
 
                 </div>
+
+
+
+
             </div>
-
-          <div class="convertidor">
-
-           <h4 id="titulo" >CONVERSOR DE DIVISA</h4>
-          <p id="p1">Convertir de </p>
-          <div>       
-              <select class="browser-default" id="d1" >
-              <option value="" disabled selected>De</option>
-              <option value="Dolar">Dolar</option>
-              <option value="Peso">Peso</option>
-              </select>
-          </div>
-              
-          <div>
-
-              <select class="browser-default" id="d2" >
-              <option value="" disabled selected>a</option>
-              <option value="Dolar">Dolar</option>
-              <option value="Peso">Peso</option>
-              </select>
-
-          </div>
-           <p id="p2">a</p>
-              
-
-              <div class="input-field col s12 customInput">
-                  <i class="material-icons prefix">monetization_on</i>
-                  <input class="browser-default" id="direccion" type="text" name="direccion"
-                     placeholder="Ingrese la cantidad.">
-
-              </div>
-              <br>
-  
-
-              <h5>Resultado:</h5> <h5>$0.00</h5>
-
-           </div>
-
-
 
 
         </div>
-
-
-    </div>
-</body>
-  
-   
-</div>
+    </body>
