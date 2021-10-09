@@ -80,4 +80,89 @@ export class UserCasaComponent implements OnInit {
       )
   }
 
+
+
+
+
+  convertir(){
+    var valor = parseFloat((<HTMLInputElement>document.getElementById("cantidad")).value);
+    //var cantidad = (<HTMLInputElement>document.getElementById("cantidad")).value;
+    var dolarCompra = parseFloat((<HTMLInputElement>document.getElementById("dllC")).value);
+    var dolarVenta = parseFloat((<HTMLInputElement>document.getElementById("dllV")).value);
+    var de = (<HTMLInputElement>document.getElementById("de")).value;
+    var a = (<HTMLInputElement>document.getElementById("a")).value;
+    var accion = (<HTMLInputElement>document.getElementById("accion")).value;
+   
+
+
+    if(accion=="compra"){
+        //PESO A DOLAR 
+
+        if(de=="peso"&&a=="dolar"){
+          var resultado=valor/dolarCompra;
+          alert (resultado);
+        }
+        //DOLAR A PESO 
+        else if (de=="dolar"&&a=="peso"){
+          var resultado= valor*dolarCompra;
+          alert (resultado);
+          
+        }
+        //PESO A PESO O DOLAR  
+        else if (de=="peso"&&a=="peso"){
+          alert ('No es posible realizar esta operacion');
+
+        }
+        else if (de=="DOLAR"&&a=="DOLAR"){
+          alert ('No es posible realizar esta operacion');
+        }
+
+          
+    //document.getElementById('prueba').innerHTML = resultado;
+
+
+      }
+      else{
+
+         //PESO A DOLAR 
+
+         if(de=="peso"&&a=="dolar"){
+          var resultado=valor/dolarVenta;
+          alert (resultado);
+        }
+        //DOLAR A PESO 
+        else if (de=="dolar"&&a=="peso"){
+          var resultado= valor*dolarVenta;
+          alert (resultado);
+          
+        }
+        //PESO A PESO O DOLAR  
+        else if (de=="peso"&&a=="peso"){
+          alert ('No es posible realizar esta operacion');
+
+        }
+        else if (de=="DOLAR"&&a=="DOLAR"){
+          alert ('No es posible realizar esta operacion');
+        }
+      }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
 }

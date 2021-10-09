@@ -90,8 +90,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{ dollar.dllC }}</td>
-                                    <td>{{ dollar.dllV }}</td>
+                                    <td >{{ dollar.dllC }}</td>
+                                    <td >{{ dollar.dllV }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -99,49 +99,59 @@
                     </div>
                 </div>
 
+               
                 <div class="convertidor">
-
-                    <h4 id="titulo">CONVERSOR DE DIVISA</h4>
-                    <p id="p1">Convertir de </p>
-                    <div>
-                        <select class="browser-default" id="d1">
-                            <option value="" disabled selected>De</option>
-                            <option value="Dolar">Dolar</option>
-                            <option value="Peso">Peso</option>
+                    <h4 id="titulo" >CONVERSOR DE DIVISA</h4>
+                   
+                    <div>       
+                        <select class="browser-default" id="accion"  >
+                        <option selected disabled >Seleccione la accion que va a realizar: </option>
+                        <option  value="compra">Compra</option>
+                        <option value="venta">Venta</option>
                         </select>
                     </div>
-
-                    <div>
-
-                        <select class="browser-default" id="d2">
-                            <option value="" disabled selected>a</option>
-                            <option value="Dolar">Dolar</option>
-                            <option value="Peso">Peso</option>
-                        </select>
-
+                   <p id="p1">Convertir de </p>
+                   <div>       
+                       <select class="browser-default" id="de" name="de"  >
+                       <option  value="peso">Peso</option>
+                       <option value="dolar">Dolar</option>
+                       </select>
+                   </div>
+                       <p id="p2">a</p>
+                   <div>
+   
+                       <select class="browser-default" id="a" name="a"  >
+                       <option value="peso">Peso</option>
+                       <option value="dolar">Dolar</option>
+                       </select>
+   
+                   </div>
+                    
+                       
+   
+                       <div class="input-field col s12 customInput">
+                           <i class="material-icons prefix">monetization_on</i>
+                           <input class="browser-default" id="cantidad" name="cantidad" type="number"  
+                              placeholder="Ingrese la cantidad.">
+   
+                       </div>
+                       <br>
+   
+                       <div class="col s6">
+                           <a  style="width: 100%;"
+                               class="btn col l10 s12 m12 red accent-6 btnL offset-l1 offset-s1 offset-m1" (click)="convertir()">Convertir</a>
+                       </div>
+                    
+   
+                       <h5>Resultado:</h5> <h5 >$0.00</h5>
+                        
                     </div>
-                    <p id="p2">a</p>
-
-
-                    <div class="input-field col s12 customInput">
-                        <i class="material-icons prefix">monetization_on</i>
-                        <input class="browser-default" id="direccion" type="text" name="direccion"
-                            placeholder="Ingrese la cantidad.">
-
-                    </div>
-                    <br>
-
-
-                    <h5>Resultado:</h5>
-                    <h5>$0.00</h5>
-
-                </div>
-
-
-
-
-            </div>
-
-
-        </div>
-    </body>
+         
+                 </div>
+   
+             </div>
+         </body>
+           
+         
+         </div>
+   
