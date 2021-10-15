@@ -12,10 +12,9 @@ declare var M: any;
 @Component({
   selector: 'app-user-casa',
   templateUrl: './user-casa.component.html',
-  styleUrls: ['./user-casa.component.css']
+  styleUrls: ['./user-casa.component.css'],
 })
 export class UserCasaComponent implements OnInit {
-
   helper = new JwtHelperService();
   decodedToken: any;
   token: any;
@@ -27,7 +26,12 @@ export class UserCasaComponent implements OnInit {
     dllC: 0,
   };
 
-  constructor(public authCasaService:AuthCasaService, public authAdminService:AuthAdminService, public casasService:CasasService, private router: Router) { }
+  constructor(
+    public authCasaService: AuthCasaService,
+    public authAdminService: AuthAdminService,
+    public casasService: CasasService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     if (this.token) {
@@ -35,134 +39,100 @@ export class UserCasaComponent implements OnInit {
     }
     this.token = localStorage.getItem('token');
     this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
-    
-    if(this.authAdminService.decodedToken.rol == undefined){
-     
-    } else{
+
+    if (this.authAdminService.decodedToken.rol == undefined) {
+    } else {
       this.router.navigate(['/signin']);
     }
 
     this.casaId = this.authAdminService.decodedToken._id;
     if (this.casaId) {
       this.casasService.getCasasById(this.casaId).subscribe(
-        res => {
+        (res) => {
           // console.log(res);
           this.dollar = res;
         },
-        err => console.log(err)
-      )
+        (err) => console.log(err)
+      );
     }
-    
   }
 
-  logout(){
+  logout() {
     this.authAdminService.logOut();
   }
 
-  getCasaById(){
-    this.casasService.getCasasById(this.casaId).subscribe(res => {
+  getCasaById() {
+    this.casasService.getCasasById(this.casaId).subscribe((res) => {
       this.casasService.casas = res as Casas[];
-    })
+    });
   }
 
-  updateCasa(casa: Casas){
+  updateCasa(casa: Casas) {
     this.casasService.selectedCasa = casa;
   }
 
-
   updateGame() {
-    this.casasService.updateGame(this.casaId, this.dollar)
-      .subscribe(
-        res => { 
-          M.toast({html: 'Precio actualizado exitosamente'});
-        },
-        err => console.error(err)
-      )
+    this.casasService.updateGame(this.casaId, this.dollar).subscribe(
+      (res) => {
+        M.toast({ html: 'Precio actualizado exitosamente' });
+      },
+      (err) => console.error(err)
+    );
   }
 
-
-
-
-
-  convertir(){
-    var valor = parseFloat((<HTMLInputElement>document.getElementById("cantidad")).value);
+  convertir() {
+    var valor = parseFloat(
+      (<HTMLInputElement>document.getElementById('cantidad')).value
+    );
     //var cantidad = (<HTMLInputElement>document.getElementById("cantidad")).value;
-    var dolarCompra = parseFloat((<HTMLInputElement>document.getElementById("dllC")).value);
-    var dolarVenta = parseFloat((<HTMLInputElement>document.getElementById("dllV")).value);
-    var de = (<HTMLInputElement>document.getElementById("de")).value;
-    var a = (<HTMLInputElement>document.getElementById("a")).value;
-    var accion = (<HTMLInputElement>document.getElementById("accion")).value;
-   
+    var dolarCompra = parseFloat(
+      (<HTMLInputElement>document.getElementById('dllC')).value
+    );
+    var dolarVenta = parseFloat(
+      (<HTMLInputElement>document.getElementById('dllV')).value
+    );
+    var de = (<HTMLInputElement>document.getElementById('de')).value;
+    var a = (<HTMLInputElement>document.getElementById('a')).value;
+    var accion = (<HTMLInputElement>document.getElementById('accion')).value;
 
+    if (accion == 'compra') {
+      //PESO A DOLAR
 
-    if(accion=="compra"){
-        //PESO A DOLAR 
-
-        if(de=="peso"&&a=="dolar"){
-          var resultado=valor/dolarCompra;
-          alert (resultado);
-        }
-        //DOLAR A PESO 
-        else if (de=="dolar"&&a=="peso"){
-          var resultado= valor*dolarCompra;
-          alert (resultado);
-          
-        }
-        //PESO A PESO O DOLAR  
-        else if (de=="peso"&&a=="peso"){
-          alert ('No es posible realizar esta operacion');
-
-        }
-        else if (de=="DOLAR"&&a=="DOLAR"){
-          alert ('No es posible realizar esta operacion');
-        }
-
-          
-    //document.getElementById('prueba').innerHTML = resultado;
-
-
+      if (de == 'peso' && a == 'dolar') {
+        var resultado = valor / dolarCompra;
+        alert(resultado.toFixed(2));
       }
-      else{
-
-         //PESO A DOLAR 
-
-         if(de=="peso"&&a=="dolar"){
-          var resultado=valor/dolarVenta;
-          alert (resultado);
-        }
-        //DOLAR A PESO 
-        else if (de=="dolar"&&a=="peso"){
-          var resultado= valor*dolarVenta;
-          alert (resultado);
-          
-        }
-        //PESO A PESO O DOLAR  
-        else if (de=="peso"&&a=="peso"){
-          alert ('No es posible realizar esta operacion');
-
-        }
-        else if (de=="DOLAR"&&a=="DOLAR"){
-          alert ('No es posible realizar esta operacion');
-        }
+      //DOLAR A PESO
+      else if (de == 'dolar' && a == 'peso') {
+        var resultado = valor * dolarCompra;
+        alert(resultado.toFixed(2));
+      }
+      //PESO A PESO O DOLAR
+      else if (de == 'peso' && a == 'peso') {
+        alert('No es posible realizar esta operacion');
+      } else if (de == 'dolar' && a == 'dolar') {
+        alert('No es posible realizar esta operacion');
       }
 
+      //document.getElementById('prueba').innerHTML = resultado;
+    } else {
+      //PESO A DOLAR
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
+      if (de == 'peso' && a == 'dolar') {
+        var resultado = valor / dolarVenta;
+        alert(resultado.toFixed(2));
+      }
+      //DOLAR A PESO
+      else if (de == 'dolar' && a == 'peso') {
+        var resultado = valor * dolarVenta;
+        alert(resultado.toFixed(2));
+      }
+      //PESO A PESO O DOLAR
+      else if (de == 'peso' && a == 'peso') {
+        alert('No es posible realizar esta operacion');
+      } else if (de == 'dolar' && a == 'dolar') {
+        alert('No es posible realizar esta operacion');
+      }
+    }
+  }
 }
