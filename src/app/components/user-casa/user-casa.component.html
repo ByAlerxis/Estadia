@@ -101,6 +101,7 @@
 
                
                 <div class="convertidor">
+                    <br>
                     <h4 id="titulo" >CONVERSOR DE DIVISA</h4>
                    
                     <div>       
@@ -110,16 +111,22 @@
                         <option value="venta">Venta</option>
                         </select>
                     </div>
-                   <p id="p1">Convertir de </p>
-                   <div>       
+                    <div class="input-field  conversorInput">
+                        <i class="material-icons prefix">monetization_on</i>
+                        <input class="browser-default" id="cantidad" name="cantidad" type="text"  
+                           placeholder="Ingrese la cantidad.">
+
+                    </div>
+                    <br>
+                   <div class="conversorD">  
+                       <span>CONVERTIR DE:</span>     
                        <select class="browser-default" id="de" name="de"  >
                        <option  value="peso">Peso</option>
                        <option value="dolar">Dolar</option>
                        </select>
                    </div>
-                       <p id="p2">a</p>
-                   <div>
-   
+                   <div class="conversorA">
+                        <span>A:</span>   
                        <select class="browser-default" id="a" name="a"  >
                        <option value="peso">Peso</option>
                        <option value="dolar">Dolar</option>
@@ -127,23 +134,22 @@
    
                    </div>
                     
-                       
-   
-                       <div class="input-field col s12 customInput">
-                           <i class="material-icons prefix">monetization_on</i>
-                           <input class="browser-default" id="cantidad" name="cantidad" type="number"  
-                              placeholder="Ingrese la cantidad.">
-   
-                       </div>
                        <br>
-   
+                       <div class="col s6">
+                        <a  style="width: 100%;"
+                            class="btn col l10 s12 m12 blue accent-6 btnL offset-l1 offset-s1 offset-m1"  >Guardar</a>
+                       </div>
                        <div class="col s6">
                            <a  style="width: 100%;"
-                               class="btn col l10 s12 m12 red accent-6 btnL offset-l1 offset-s1 offset-m1" (click)="convertir()">Convertir</a>
+                               class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s1 offset-m1" (click)="convertir()">Convertir</a>
                        </div>
                     
    
-                       <h5>Resultado:</h5> <h5 >$0.00</h5>
+                                        <div id="r"> 
+                                            <h5 id="resultado">Resultado:</h5> <h5 >$0.00</h5>
+                                        </div>
+                                           
+   
                         
                     </div>
          

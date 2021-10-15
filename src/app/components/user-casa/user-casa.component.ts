@@ -95,17 +95,17 @@ export class UserCasaComponent implements OnInit {
    
 
 
-    if(accion=="compra"){
+    if(accion=="compra" ) {
         //PESO A DOLAR 
 
         if(de=="peso"&&a=="dolar"){
           var resultado=valor/dolarCompra;
-          alert (resultado);
+          alert (resultado.toFixed(2));
         }
         //DOLAR A PESO 
         else if (de=="dolar"&&a=="peso"){
           var resultado= valor*dolarCompra;
-          alert (resultado);
+          alert (resultado.toFixed(2));
           
         }
         //PESO A PESO O DOLAR  
@@ -122,18 +122,18 @@ export class UserCasaComponent implements OnInit {
 
 
       }
-      else{
+      else {
 
          //PESO A DOLAR 
 
          if(de=="peso"&&a=="dolar"){
           var resultado=valor/dolarVenta;
-          alert (resultado);
+          alert (resultado.toFixed(2));
         }
         //DOLAR A PESO 
         else if (de=="dolar"&&a=="peso"){
           var resultado= valor*dolarVenta;
-          alert (resultado);
+          alert (resultado.toFixed(2));
           
         }
         //PESO A PESO O DOLAR  
@@ -144,6 +144,8 @@ export class UserCasaComponent implements OnInit {
         else if (de=="DOLAR"&&a=="DOLAR"){
           alert ('No es posible realizar esta operacion');
         }
+
+
       }
 
 
