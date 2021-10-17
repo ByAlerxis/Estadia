@@ -81,126 +81,52 @@ export class UserCasaComponent implements OnInit {
   }
 
   convertir() {
-    var valor = parseFloat(
-      (<HTMLInputElement>document.getElementById('cantidad')).value
-    );
+    var valor = parseFloat((<HTMLInputElement>document.getElementById('cantidad')).value);
     //var cantidad = (<HTMLInputElement>document.getElementById("cantidad")).value;
-<<<<<<< HEAD
-    var dolarCompra = parseFloat((<HTMLInputElement>document.getElementById("dllC")).value);
-    var dolarVenta = parseFloat((<HTMLInputElement>document.getElementById("dllV")).value);
-    var de = (<HTMLInputElement>document.getElementById("de")).value;
-    var a = (<HTMLInputElement>document.getElementById("a")).value;
-    var accion = (<HTMLInputElement>document.getElementById("accion")).value;
-    var resultadoContenedor = document.getElementById("resultado");
-    if(accion=="compra" ) {
-      
-        //PESO A DOLAR 
-
-        if(de=="peso"&&a=="dolar"){
-          let resultado = (valor/dolarCompra).toFixed(2);
-          resultadoContenedor!.innerHTML = "Resultado: " + resultado;         
-        } 
-        
-        //DOLAR A PESO 
-        else if (de=="dolar"&&a=="peso"){
-          let resultado= (valor*dolarCompra).toFixed(2);
-          resultadoContenedor!.innerHTML = "Resultado: $ " + resultado;
-        }
-        //PESO A PESO O DOLAR  
-        else if (de=="peso"&&a=="peso"){
-          M.toast({html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.'});
-
-
-        }
-        else if (de=="DOLAR"&&a=="DOLAR"){
-          M.toast({html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.'});
-        }
-
-      }
-      else {
-
-         //PESO A DOLAR 
-
-         if(de=="peso"&&a=="dolar"){
-          let resultado=(valor/dolarVenta).toFixed(2);
-          resultadoContenedor!.innerHTML = "Resultado: " + resultado;
-
-        }
-        //DOLAR A PESO 
-        else if (de=="dolar"&&a=="peso"){
-          let resultado= (valor*dolarVenta).toFixed(2);
-          resultadoContenedor!.innerHTML = "Resultado: " + resultado;
-
-          
-        }
-        //PESO A PESO O DOLAR  
-        else if (de=="peso"&&a=="peso"){
-          M.toast({html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.'});
-
-
-        }
-        else if (de=="DOLAR"&&a=="DOLAR"){
-          M.toast({html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.'});
-        }
-
-
-      }
-}
-
-
-
-
-
-=======
-    var dolarCompra = parseFloat(
-      (<HTMLInputElement>document.getElementById('dllC')).value
-    );
-    var dolarVenta = parseFloat(
-      (<HTMLInputElement>document.getElementById('dllV')).value
-    );
+    var dolarCompra = parseFloat((<HTMLInputElement>document.getElementById('dllC')).value);
+    var dolarVenta = parseFloat((<HTMLInputElement>document.getElementById('dllV')).value);
     var de = (<HTMLInputElement>document.getElementById('de')).value;
     var a = (<HTMLInputElement>document.getElementById('a')).value;
     var accion = (<HTMLInputElement>document.getElementById('accion')).value;
+    var resultadoContenedor = document.getElementById("resultado"); 
 
     if (accion == 'compra') {
       //PESO A DOLAR
 
       if (de == 'peso' && a == 'dolar') {
-        var resultado = valor / dolarCompra;
-        alert(resultado.toFixed(2));
+        let resultado = (valor / dolarCompra).toFixed(2);
+        resultadoContenedor!.innerHTML = "Resultado: $"+ resultado;
       }
       //DOLAR A PESO
       else if (de == 'dolar' && a == 'peso') {
-        var resultado = valor * dolarCompra;
-        alert(resultado.toFixed(2));
+        let resultado = (valor * dolarCompra).toFixed(2);
+        resultadoContenedor!.innerHTML = "Resultado: $"+ resultado;
       }
       //PESO A PESO O DOLAR
       else if (de == 'peso' && a == 'peso') {
-        alert('No es posible realizar esta operacion');
+        M.toast({ html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.' });
       } else if (de == 'dolar' && a == 'dolar') {
-        alert('No es posible realizar esta operacion');
+        M.toast({ html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.' });
       }
 
-      //document.getElementById('prueba').innerHTML = resultado;
     } else {
       //PESO A DOLAR
 
       if (de == 'peso' && a == 'dolar') {
-        var resultado = valor / dolarVenta;
-        alert(resultado.toFixed(2));
+        let resultado = (valor / dolarVenta).toFixed(2);
+        resultadoContenedor!.innerHTML = "Resultado: $"+ resultado;
       }
       //DOLAR A PESO
       else if (de == 'dolar' && a == 'peso') {
-        var resultado = valor * dolarVenta;
-        alert(resultado.toFixed(2));
+        let resultado = (valor * dolarVenta).toFixed(2);
+        resultadoContenedor!.innerHTML = "Resultado: $"+ resultado;
       }
       //PESO A PESO O DOLAR
       else if (de == 'peso' && a == 'peso') {
-        alert('No es posible realizar esta operacion');
+        M.toast({ html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.' });
       } else if (de == 'dolar' && a == 'dolar') {
-        alert('No es posible realizar esta operacion');
+        M.toast({ html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.' });
       }
     }
   }
->>>>>>> 904c4419d59164d7fde2b6fed1bc934f447c8443
 }
