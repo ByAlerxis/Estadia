@@ -43,7 +43,7 @@ export class CasasService {
 
 
 
-  updateGame(_id: string|number, updatedGame: Dollar): Observable<Dollar> {
-    return this.http.put(`${this.URL_API}/${_id}`, updatedGame);
+  updateDollar(_id: string|number, updatedDollar: Dollar): Observable<Dollar> {
+    return this.http.put(`${this.URL_API}/${_id}`, updatedDollar);
   }
 }

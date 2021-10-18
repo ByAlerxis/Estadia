@@ -49,7 +49,7 @@ export class UserCasaComponent implements OnInit {
     if (this.casaId) {
       this.casasService.getCasasById(this.casaId).subscribe(
         (res) => {
-          // console.log(res);
+          console.log(res);
           this.dollar = res;
         },
         (err) => console.log(err)
@@ -67,17 +67,17 @@ export class UserCasaComponent implements OnInit {
     });
   }
 
-  updateCasa(casa: Casas) {
-    this.casasService.selectedCasa = casa;
-  }
-
-  updateGame() {
-    this.casasService.updateGame(this.casaId, this.dollar).subscribe(
+  updateDollar() {
+    this.casasService.updateDollar(this.casaId, this.dollar).subscribe(
       (res) => {
         M.toast({ html: 'Precio actualizado exitosamente' });
       },
       (err) => console.error(err)
     );
+  }
+
+  historial_put() {
+    
   }
 
   convertir() {
