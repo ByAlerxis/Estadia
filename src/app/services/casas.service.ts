@@ -5,6 +5,7 @@ import { Dollar } from 'src/app/models/dollar';
 import { Observable } from 'rxjs';
 
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -44,6 +45,10 @@ export class CasasService {
 
 
   updateDollar(_id: string|number, updatedDollar: Dollar): Observable<Dollar> {
+    return this.http.put(`${this.URL_API}/${_id}`, updatedDollar);
+  }
+
+  historialPut(_id: string|number, updatedDollar: Dollar): Observable<Dollar> {
     return this.http.put(`${this.URL_API}/${_id}`, updatedDollar);
   }
 }
