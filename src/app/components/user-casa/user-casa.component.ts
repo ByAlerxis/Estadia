@@ -26,7 +26,7 @@ export class UserCasaComponent implements OnInit {
     _id: 0,
     dllV: 0,
     dllC: 0,
-    historial_put: [{}],
+    historial_put: {},
     historial_dolar: {},
     historial_dolar_main: {},
   };
@@ -76,8 +76,8 @@ export class UserCasaComponent implements OnInit {
     this.hoy = moment().format('MMMM Do YYYY, h:mm:ss a');
     console.log(this.hoy);
 
-    var car = { car: this.hoy }
 
+    var car = { car: this.hoy };
     this.dollar.historial_dolar_main = car;
     var arr = [];
     arr.push(this.dollar.historial_dolar_main);
@@ -86,9 +86,9 @@ export class UserCasaComponent implements OnInit {
     console.log(arr);
 
     // this.dollar.historial_dolar_main = { historial: this.hoy };
-    // let historialPar = Object.assign(this.dollar.historial_dolar_main, this.dollar.historial_dolar)
+    // let historialPar = Object.assign(this.dollar.historial_dolar, this.dollar.historial_dolar_main)
     // this.dollar.historial_dolar = historialPar;
-    // console.log(historialPar);
+    // console.log(this.dollar.historial_dolar);
 
     this.casasService.updateDollar(this.casaId, this.dollar).subscribe(
       (res) => {
