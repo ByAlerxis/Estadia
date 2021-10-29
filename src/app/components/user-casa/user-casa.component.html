@@ -7,156 +7,100 @@
     </div>
 </nav>
 
-<div class="col s12 m12 l7 table2">
 
-    <body class="bodyLogin">
-        <div class="row">
-            <!-- PRECIOS -->
-            <div class="col s12 m12 l5 center card-action">
-                <form #userForm="ngForm">
-                    <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="casasService.selectedCasa._id">
-                    <input class="browser-default" id="nombre_negocio" type="hidden" nombre_negocio="ngModel"
-                        name="nombre_negocio" placeholder="Ingrese el nombre del negocio"
-                        [(ngModel)]="casasService.selectedCasa.nombre_negocio">
-                    <input class="browser-default" id="direccion" type="hidden" name="direccion" #direccion="ngModel"
-                        placeholder="Ingrese direccion de la casa de cambio"
-                        [(ngModel)]="casasService.selectedCasa.direccion">
-                    <input class="browser-default" id="email" type="hidden" name="email" #email="ngModel"
-                        placeholder="Ingrese correo de contacto" [(ngModel)]="casasService.selectedCasa.email">
-                    <input class="browser-default" id="password" type="hidden" name="password" #password="ngModel"
-                        placeholder="Ingrese contraseña" [(ngModel)]="casasService.selectedCasa.password">
-                    <input class="browser-default" id="logo" type="hidden" name="logo" #logo="ngModel"
-                        placeholder="Ingrese logo de la empresa" [(ngModel)]="casasService.selectedCasa.logo">
+<body class="fondo">
+    
+    <!-- Tabla -->
+    <div class="container">
+        <b class="casa">{{ dollar.nombre_negocio }}</b>
+        <div class="tabla">
+            <table class="content-table table">
+                <thead>
+                    <tr>
+                        <th>Compra</th>
+                        <th>Venta </th>
+                    </tr>
 
-                    <div class="border">
-                        <!-- COMPRA -->
-                        <div class="row card-content">
-                            <span class="card-title"><b>PRECIO COMPRA </b></span>
-                            <div class="row col s12 m10 l10 offset-l1 offset-m1">
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ dollar.dllC }}</td>
+                        <td>{{ dollar.dllV }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-                                <div class="input-field col s12 customInput">
-                                    <i class="material-icons prefix">monetization_on</i>
-                                    <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="text" name="dllC"
-                                        placeholder="{{dollar.dllC}}" autocomplete="off">
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- VENTA  -->
-                        <div class="row card-content">
-                            <span class="card-title"><b>PRECIO VENTA </b></span>
-                            <div class="row col s12 m10 l10 offset-l1 offset-m1">
-
-                                <div class="input-field col s12 customInput">
-                                    <i class="material-icons prefix">monetization_on</i>
-                                    <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="text" name="dllV"
-                                        placeholder="{{dollar.dllV}}" autocomplete="off">
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="card-action">
-                            <div class="row">
-                                <!-- <div class="col s6">
-                                    <a style="width: 100%;"
-                                        class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s2 offset-m2">Limpiar
-                                        formulario</a>
-                                </div> -->
-
-                                <div class="col s6">
-                                    <a (click)="updateDollar()" style="width: 100%;"
-                                        class="btn col l10 s12 m12 green accent-6 btnL offset-l7 offset-s1 offset-m1">Actualizar</a>
-                                </div>
-                            </div>
-                        </div>
+    <div class="linear">
+        <!-- Editar precio -->
+        <div class="precio">
+            <!-- COMPRA -->
+            <br>
+            <b>PRECIO COMPRA </b>
+            <div class="row card-content">
+                <div class="">
+                    <div class="input-field col s12 customInput">
+                        <i class="material-icons prefix">monetization_on</i>
+                        <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="text" name="dllC"
+                            placeholder="{{dollar.dllC}}" autocomplete="off">
                     </div>
-                </form>
+                </div>
+            </div>
+            <!-- VENTA  -->
+            <b>PRECIO VENTA</b>
+            <div class="row card-content">
+                <div class="">
+                    <div class="input-field col s12 customInput">
+                        <i class="material-icons prefix">monetization_on</i>
+                        <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="text" name="dllV"
+                            placeholder="{{dollar.dllV}}" autocomplete="off">
+                    </div>
+                </div>
             </div>
 
-            <!-- Tabla -->
-            <div class="col s12 m12 l7 table2">
-                <div class="col s12 m12 l12">
-                    <div class="container">
-                        <table class="content-table table">
-                            <thead>
-                                <tr>
-                                    <th>Compra</th>
-                                    <th>Venta </th>
-                                </tr>
+            <div>
+                <a (click)="updateDollar()" style="width: 100%;"
+                    class="btn green accent-6 btn-actualizar">Actualizar</a>
+            </div>
+        </div>
 
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td >{{ dollar.dllC }}</td>
-                                    <td >{{ dollar.dllV }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+        <!-- Conversor de divisa -->
+            <div class="convertidor">
+                <h4 id="titulo">CONVERSOR DE DIVISA</h4>
+                <div class="input-field  conversorInput">
+                    <i class="material-icons prefix">monetization_on</i>
+                    <input class="browser-default" id="cantidad" name="cantidad" type="text"
+                        placeholder="Ingrese la cantidad.">
+                </div>
+
+                <div class="opcion">
+                    <div class="conversorD">
+                        <span>DE:</span>
+                        <select class="browser-default" id="de" name="de">
+                            <option value="peso">Peso</option>
+                            <option value="dolar" selected>Dolar</option>
+                        </select>
+                    </div>
+                    <div class="conversorA">
+                        <span>A:</span>
+                        <select class="browser-default" id="a" name="a">
+                            <option value="peso" selected>Peso</option>
+                            <option value="dolar">Dolar</option>
+                        </select>
 
                     </div>
                 </div>
 
-               
-                <div class="convertidor">
-                    <br>
-                    <h4 id="titulo" >CONVERSOR DE DIVISA</h4>
-                   
-                    <div>       
-                        <select class="browser-default" id="accion"  >
-                        <option selected disabled >Seleccione la accion que va a realizar: </option>
-                        <option  value="compra">Compra</option>
-                        <option value="venta">Venta</option>
-                        </select>
-                    </div>
-                    <div class="input-field  conversorInput">
-                        <i class="material-icons prefix">monetization_on</i>
-                        <input class="browser-default" id="cantidad" name="cantidad" type="text"  
-                           placeholder="Ingrese la cantidad.">
 
-                    </div>
-                    <br>
-                   <div class="conversorD">  
-                       <span>CONVERTIR DE:</span>     
-                       <select class="browser-default" id="de" name="de"  >
-                       <option  value="peso">Peso</option>
-                       <option value="dolar">Dolar</option>
-                       </select>
-                   </div>
-                   <div class="conversorA">
-                        <span>A:</span>   
-                       <select class="browser-default" id="a" name="a"  >
-                       <option value="peso">Peso</option>
-                       <option value="dolar">Dolar</option>
-                       </select>
-   
-                   </div>
-                    
-                       <br>
-                       <div class="col s6">
-                        <a  style="width: 100%;"
-                            class="btn col l10 s12 m12 blue accent-6 btnL offset-l1 offset-s1 offset-m1"  >Guardar</a>
-                       </div>
-                       <div class="col s6">
-                           <a  style="width: 100%;"
-                               class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s1 offset-m1"  (click)="convertir()">Convertir</a>
-                       </div>
-                    
-   
-                                        <div id="resultado"> 
-                                            Resultado: $0.00
-                                        </div>
-                                           
-   
-                        
-                    </div>
-         
-                 </div>
-   
-             </div>
-         </body>
-           
-         
-         </div>
-   
+                <div class="">
+                    <a class="btn green accent-6 btn-operacion" (click)="convertir()">Convertir</a>
+                </div>
+
+
+                <div class="resultado" id="resultado">
+                    Resultado: $0.00
+                </div>
+            </div>
+        </div>
+</body>

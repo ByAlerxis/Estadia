@@ -26,9 +26,7 @@ export class UserCasaComponent implements OnInit {
     _id: 0,
     dllV: 0,
     dllC: 0,
-    historial_put: {},
-    historial_dolar: {},
-    historial_dolar_main: {},
+    nombre_negocio: '',
   };
 
   constructor(
@@ -76,14 +74,13 @@ export class UserCasaComponent implements OnInit {
     this.hoy = moment().format('MMMM Do YYYY, h:mm:ss a');
     console.log(this.hoy);
 
-
-    var car = { car: this.hoy };
-    this.dollar.historial_dolar_main = car;
-    var arr = [];
-    arr.push(this.dollar.historial_dolar_main);
-    arr.push(this.dollar.historial_dolar);
-    this.dollar.historial_dolar = arr
-    console.log(arr);
+    // var car = { car: this.hoy };
+    // this.dollar.historial_dolar_main = car;
+    // var arr = [];
+    // arr.push(this.dollar.historial_dolar_main);
+    // arr.push(this.dollar.historial_dolar);
+    // this.dollar.historial_dolar = arr;
+    // console.log(arr);
 
     // this.dollar.historial_dolar_main = { historial: this.hoy };
     // let historialPar = Object.assign(this.dollar.historial_dolar, this.dollar.historial_dolar_main)
@@ -111,53 +108,28 @@ export class UserCasaComponent implements OnInit {
     );
     var de = (<HTMLInputElement>document.getElementById('de')).value;
     var a = (<HTMLInputElement>document.getElementById('a')).value;
-    var accion = (<HTMLInputElement>document.getElementById('accion')).value;
+    // var accion = (<HTMLInputElement>document.getElementById('accion')).value;
     var resultadoContenedor = document.getElementById('resultado');
 
-    if (accion == 'compra') {
-      //PESO A DOLAR
 
-      if (de == 'peso' && a == 'dolar') {
-        let resultado = (valor / dolarCompra).toFixed(2);
-        resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
-      }
-      //DOLAR A PESO
-      else if (de == 'dolar' && a == 'peso') {
-        let resultado = (valor * dolarCompra).toFixed(2);
-        resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
-      }
-      //PESO A PESO O DOLAR
-      else if (de == 'peso' && a == 'peso') {
-        M.toast({
-          html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
-        });
-      } else if (de == 'dolar' && a == 'dolar') {
-        M.toast({
-          html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
-        });
-      }
-    } else {
-      //PESO A DOLAR
-
-      if (de == 'peso' && a == 'dolar') {
-        let resultado = (valor / dolarVenta).toFixed(2);
-        resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
-      }
-      //DOLAR A PESO
-      else if (de == 'dolar' && a == 'peso') {
-        let resultado = (valor * dolarVenta).toFixed(2);
-        resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
-      }
-      //PESO A PESO O DOLAR
-      else if (de == 'peso' && a == 'peso') {
-        M.toast({
-          html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
-        });
-      } else if (de == 'dolar' && a == 'dolar') {
-        M.toast({
-          html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
-        });
-      }
+    if (de == 'peso' && a == 'dolar') {
+      let resultado = (valor / dolarVenta).toFixed(2);
+      resultadoContenedor!.innerHTML = 'Resultado: $' + resultado + ' ';
+    }
+    //DOLAR A PESO
+    else if (de == 'dolar' && a == 'peso') {
+      let resultado = (valor * dolarCompra).toFixed(2);
+      resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
+    }
+    //PESO A PESO O DOLAR
+    else if (de == 'peso' && a == 'peso') {
+      M.toast({
+        html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
+      });
+    } else if (de == 'dolar' && a == 'dolar') {
+      M.toast({
+        html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
+      });
     }
   }
 }

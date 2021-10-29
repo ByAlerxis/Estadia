@@ -1,12 +1,25 @@
-.container{
-    text-align: center;
-    align-items: center;
-    align-self: center;
-    
+/* Fondo */
+.fondo{
+    background: rgba(17, 70, 70, 0.137);
+    height: 93.5vh;
 }
 
-.content-table{
-    max-width: 750px !important;
+/* Casa */
+.casa{
+    margin-top: 25px;
+    font-size: 20px;
+}
+
+/* Tabla */
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.tabla{
+    width: 1000px;
+    max-width: 650px !important;
     border-collapse: collapse;
     margin: 25px 0;
     font-size: 20px;
@@ -14,214 +27,163 @@
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-
-.content-table thead tr{
+.tabla thead tr{
     max-width: 50px !important;
     background-color: #3AAEAB;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     color: white;
 }
-
-
-.content-table tbody tr {
+.tabla tbody tr {
     border-bottom: 1px solid #dddddd;
 }
-
-.content-table tbody tr:nth-of-type(even) {
+.tabla tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
-
-.content-table tbody tr:last-of-type {
+.tabla tbody tr:last-of-type {
     /* border-bottom: 2px solid #9DEFFB; */
     border-bottom: 2px solid #5F0202;
 }
-.red-text{
-    color: red;
-}
-.amber-text{
-    color: gold;
-}
-
-@media(max-width: 990px){
-	.table thead{
-		display: none;
-	}
-
-	.table, .table tbody, .table tr, .table td{
-		display: block;
-		width: 100%;
-	}
-	.table tr{
-		margin-bottom: 80px;
-	}
-	.table td{
-		text-align: right;
-		padding-left: 50%;
-		position: relative;
-	}
-	.table td::before{
-		content: attr(data-label);
-		position: absolute;
-		left:0;
-		width: 50%;
-		padding-left:15px;
-		font-size:15px;
-		font-weight: bold;
-		text-align: left;
-	}
-    .table td,.table th{
-        padding:12px 15px;
-        border:1px solid #ddd;
-        text-align: center;
-        font-size:16px;
-    }
-}
-.table td,.table th{
-    max-width: 166px !important;
-    max-width: 100px !important;
-    padding:12px 15px;
-    border:1px solid #ddd;
+.tabla td,.tabla th{
+    border: 1px solid #ddd;
     text-align: center;
-    font-size:16px;
+    font-size:25px;
 }
 
-/* ------------------- */
-.bodyLogin{
-    background: rgba(17, 70, 70, 0.137);
-    /* background: linear-gradient(157deg, rgba(255,166,146,1) 0%, rgba(65,61,151,1) 100%); */
+/* Editar precio */
+.precio{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
-    height: 100vh;
-}
-
-.border{
     top: 3vh;
-    position: relative;
     background-color: white;
-    width: 100%;
-    border-radius: 40px;
+    width: 30%;
+    border-radius: 40px 130px;
     height: auto;
 }
-
-.convertidor{
-    margin-top: 150px;
-    background-color: white;
-    width: 750px;
-    height:500px;
-    border-radius: 40px;
-    margin-left: 140px;
-  
-    
-}
-
-.customInput{
+.customInput{ /*Inputs*/
     height: 50px;
-    width: 80% !important;
-    margin-top: 30px;
+    width: 100% !important;
     margin-right: 60px;
     background-color: #eeeeee;
     border-radius: 100px;
     padding: 14px !important;
 }
-
 .customInput input{
     position: relative;
     padding-left: 30px;
     border-style: none;
     background-color: transparent;
     outline: none;
-    width: 90%;
+    width: 80%;
 }
-
 .customInput i {
     position: absolute;
     color: darkgray;
     z-index: 999;
     transition: all 0.5s ease 0s;
 }
-
 .customInput:hover i {
     color: black;
     transition: all 0.5s ease 0s;
 }
-
-.btnL{
-    border-radius: 20px;
-    margin-top: 30px;
-    margin-bottom: 60px;
-    width: 80% !important;
+.btn-actualizar{
+    border-radius: 50px 100px;
+    margin-bottom: 30px;
 }
 
-#titulo{
+/* Renglon */
+.linear{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* Conversor de divisa */
+.convertidor{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 130px 40px;
+    width: 30%;
+    height: auto;
+}
+.opcion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.conversorD{
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+}
+.conversorD span, .conversorA span{
+    margin: 10px;
+}
+.conversorA select, .conversorD select {
+    position: relative;
+    border-style: none;
+    outline: none;
+    background-color: #EEEEEE;
+    border-radius: 100px;
+    width: 80px;
+}
+.conversorA{
+    display: flex;
+    align-items: center;
+}
+.btn-operacion{
+    margin-top: 30px;
+    border-radius: 100px 50px;
+}
+.resultado{
+    margin-top: 13px;
     text-align: center;
     font-size: 25px;
-    
+    margin-bottom: 20px;
 }
-
-#de{
-    width: 180px;
-}
-#a{
-    width: 180px;
-}
-
-#p1{
-    margin-top: 50px;
-    
-}
-#p2{
-    width: 180px;
-}
-
-#accion{
- width: 40%;
- border-radius: 5%;
- background-color: #ddd ;
- margin-top: 30px;
- margin-left: 20px;
-}
- 
-.conversorD{
- margin-left: 80px;
-}
-
-.conversorA{
-    margin-left: 450px;
-    margin-top: -70px;
-   }
-
 .conversorInput{
     height: 50px;
-    width: 360px !important;
-    margin-top: -45px;
-    margin-left: 350px;
+    width: 80% !important;
     background-color: #eeeeee;
     border-radius: 100px;
     padding: 14px !important;
 }
-
 .conversorInput input{
     position: relative;
     padding-left: 30px;
     border-style: none;
     background-color: transparent;
     outline: none;
-    width: 90%;
+    width: 80%;
 }
-
 .conversorInput i {
     position: absolute;
     color: darkgray;
     z-index: 999;
     transition: all 0.5s ease 0s;
 }
-
 .conversorInput:hover i {
     color: black;
     transition: all 0.5s ease 0s;
 }
 
-#resultado{
-    text-align: center;
-    font-size: 25px;
+/* Responsive */
+@media(max-width: 990px){
+    .precio{
+        width: 100%;
+    } 
+    .convertidor{
+        width: 100%;
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+    .linear{
+        display: flex;
+        flex-direction: column;
+    }
 }
