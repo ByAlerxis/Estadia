@@ -1,92 +1,19 @@
-<body class="fondo">
-    <br>
-    <br>
-
-    <div class="linear">
-        <div class="form">
-            <form #userForm="ngForm">
-                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="adminsService.selectedAdmin._id">
-                <br>
-
-                <div class="input-field col s12 customInput">
-                    <i class="material-icons prefix">person</i>
-                    <input class="browser-default" id="nombre" type="text" name="nombre" #name="ngModel"
-                        placeholder="Ingrese nombre" [(ngModel)]="adminsService.selectedAdmin.nombre"
-                        autocomplete="off">
-                </div>
-
-                <div class="input-field col s12 customInput">
-                    <i class="material-icons prefix">email</i>
-                    <input class="browser-default" id="email" type="email" name="email" #email="ngModel"
-                        placeholder="Ingrese correo" [(ngModel)]="adminsService.selectedAdmin.email" autocomplete="off">
-                </div>
-
-                <div class="input-field col s12 customInput">
-                    <i class="material-icons prefix">vpn_key</i>
-                    <input class="browser-default" id="password" type="text" name="password" #password="ngModel"
-                        placeholder="Ingrese contraseña" [(ngModel)]="adminsService.selectedAdmin.password"
-                        autocomplete="off">
-                </div>
-
-                <div class="select">
-                    <select class="browser-default" id="rol" name="rol" value="Admin" #rol="ngModel"
-                        [(ngModel)]="adminsService.selectedAdmin.rol">
-                        <option value="" disabled selected>Selecciona un rol</option>
-                        <option value="Admin">Admin</option>
-                        <option value="SuperAdmin">SuperAdmin</option>
-                    </select>
-                </div>
-            </form>
-
-            <div class="botton">
-                <a (click)="resetForm(userForm)" style="width: 100%;" class="btn green accent-6">Limpiar</a>
-                <a (click)="addAdmin(userForm)" style="width: 100%;" class="btn red accent-6">Guardar</a>
-            </div>
-        </div>
+<!-- <nav class="cyan darken-2">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="sass.html">1</a></li>
+          <li><a href="badges.html">2</a></li>
+          <li><a (click)="logout()" href="#">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+</nav> -->
 
 
+<body class="bodyLogin">
 
-        <div class="container1">
-            <div class="customInput2 buscador">
-                <i class="material-icons prefix">search</i>
-                <input class="browser-default" placeholder="Buscar por nombre o correo" type="text" id="searchfield"
-                    (keyup)="getUsersByNameAndEmail()">
-            </div>
-            <div class="tabla">
-                <table class="content-table table">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
-                            <th>Operaciones</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr *ngFor="let admins of adminsService.admins">
-                            <td>{{ admins.nombre }}</td>
-                            <td>{{ admins.email }}</td>
-                            <td>{{ admins.rol }}</td>
-                            <div class="ab">
-                                <a class="a" (click)="updateAdmin(admins)"><i
-                                        class="material-icons amber-text">mode_edit</i></a>
-                                <a class="b" (click)="deleteAdmin(admins._id)"><i
-                                        class="material-icons red-text">delete</i></a>
-                            </div>
-
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-    </div>
-
-
-
-
-    <!-- <div class="row">
+    <div class="row">
+        <!-- Formulario -->
         <div class="col s12 m6 l6 center card-action">
             <div class="border">
     
@@ -101,12 +28,14 @@
                                 <i class="material-icons prefix">person</i>
                                 <input class="browser-default" id="nombre" type="text" name="nombre" #name="ngModel" placeholder="Ingrese nombre"
                                     [(ngModel)]="adminsService.selectedAdmin.nombre" autocomplete="off">
+                                <!-- <label for="nombre">Nombre completo</label> -->
                             </div>
     
                             <div class="input-field col s12 customInput">
                                 <i class="material-icons prefix">email</i>
                                 <input class="browser-default" id="email" type="text" name="email" #email="ngModel" placeholder="Ingrese correo"
                                     [(ngModel)]="adminsService.selectedAdmin.email" autocomplete="off">
+                                <!-- <label for="email">Correo electronico</label> -->
                             </div>
     
                             <div class="input-field col s12 customInput">
@@ -114,6 +43,7 @@
                                 <input class="browser-default" id="password" type="text" name="password" #password="ngModel"
                                     placeholder="Ingrese contraseña" [(ngModel)]="adminsService.selectedAdmin.password"
                                     autocomplete="off">
+                                <!-- <label for="password">Contraseña</label> -->
                             </div>
     
                             <div class="select">
@@ -124,6 +54,12 @@
                                     <option value="SuperAdmin">SuperAdmin</option>
                                 </select>
                             </div>
+    
+                            <!-- <select class="browser-default" id="rol" name="rol" value="Admin" #rol="ngModel" [(ngModel)]="adminsService.selectedAdmin.rol">
+                                <option value="SuperAdmin">Super Admin</option>
+                                <option selected value="Admin">Admin</option>
+                            </select> -->
+    
                         </div>
     
                     </form>
@@ -156,6 +92,7 @@
                     <table class="content-table table">
                         <thead>
                             <tr>
+                                <!-- <th>Id</th> -->
                                 <th>Nombre</th>
                                 <th>Correo</th>
                                 <th>Rol</th>
@@ -165,6 +102,7 @@
     
                         <tbody>
                             <tr *ngFor="let admins of adminsService.admins">
+                                <!-- <td>{{ admins._id }}</td> -->
                                 <td>{{ admins.nombre }}</td>
                                 <td>{{ admins.email }}</td>
                                 <td>{{ admins.rol }}</td>
@@ -178,6 +116,6 @@
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
 </body>
