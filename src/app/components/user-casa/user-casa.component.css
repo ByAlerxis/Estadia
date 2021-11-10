@@ -1,24 +1,28 @@
 /* Fondo */
-.fondo{
+
+.fondo {
     background: rgba(17, 70, 70, 0.137);
-    height: 93.5vh;
+    height: 93.4vh;
 }
 
 /* Casa */
-.casa{
+
+.casa {
     margin-top: 25px;
     font-size: 20px;
 }
 
 /* Tabla */
-.container{
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.tabla{
-    width: 1000px;
+
+.tabla {
+    min-width: 1000px;
     max-width: 650px !important;
     border-collapse: collapse;
     margin: 25px 0;
@@ -27,42 +31,49 @@
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
-.tabla thead tr{
+
+.tabla thead tr {
     max-width: 50px !important;
     background-color: #3AAEAB;
     text-align: center;
     font-weight: bold;
     color: white;
 }
+
 .tabla tbody tr {
     border-bottom: 1px solid #dddddd;
 }
+
 .tabla tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
+
 .tabla tbody tr:last-of-type {
     /* border-bottom: 2px solid #9DEFFB; */
     border-bottom: 2px solid #5F0202;
 }
-.tabla td,.tabla th{
+
+.tabla td, .tabla th {
     border: 1px solid #ddd;
     text-align: center;
-    font-size:25px;
+    font-size: 25px;
 }
 
 /* Editar precio */
-.precio{
+
+.precio {
     display: flex;
     align-items: center;
     flex-direction: column;
-
     top: 3vh;
     background-color: white;
     width: 30%;
     border-radius: 40px 130px;
     height: auto;
 }
-.customInput{ /*Inputs*/
+
+.customInput {
+    /*Inputs*/
     height: 50px;
     width: 100% !important;
     margin-right: 60px;
@@ -70,7 +81,8 @@
     border-radius: 100px;
     padding: 14px !important;
 }
-.customInput input{
+
+.customInput input {
     position: relative;
     padding-left: 30px;
     border-style: none;
@@ -78,23 +90,27 @@
     outline: none;
     width: 80%;
 }
+
 .customInput i {
     position: absolute;
     color: darkgray;
     z-index: 999;
     transition: all 0.5s ease 0s;
 }
+
 .customInput:hover i {
     color: black;
     transition: all 0.5s ease 0s;
 }
-.btn-actualizar{
+
+.btn-actualizar {
     border-radius: 50px 100px;
     margin-bottom: 30px;
 }
 
 /* Renglon */
-.linear{
+
+.linear {
     margin-top: 30px;
     display: flex;
     flex-direction: row;
@@ -102,7 +118,8 @@
 }
 
 /* Conversor de divisa */
-.convertidor{
+
+.convertidor {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -111,19 +128,23 @@
     width: 30%;
     height: auto;
 }
-.opcion{
+
+.opcion {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
-.conversorD{
+
+.conversorD {
     display: flex;
     align-items: center;
     margin-right: 50px;
 }
-.conversorD span, .conversorA span{
+
+.conversorD span, .conversorA span {
     margin: 10px;
 }
+
 .conversorA select, .conversorD select {
     position: relative;
     border-style: none;
@@ -132,28 +153,33 @@
     border-radius: 100px;
     width: 80px;
 }
-.conversorA{
+
+.conversorA {
     display: flex;
     align-items: center;
 }
-.btn-operacion{
+
+.btn-operacion {
     margin-top: 30px;
     border-radius: 100px 50px;
 }
-.resultado{
+
+.resultado {
     margin-top: 13px;
     text-align: center;
     font-size: 25px;
     margin-bottom: 20px;
 }
-.conversorInput{
+
+.conversorInput {
     height: 50px;
     width: 80% !important;
     background-color: #eeeeee;
     border-radius: 100px;
     padding: 14px !important;
 }
-.conversorInput input{
+
+.conversorInput input {
     position: relative;
     padding-left: 30px;
     border-style: none;
@@ -161,29 +187,50 @@
     outline: none;
     width: 80%;
 }
+
 .conversorInput i {
     position: absolute;
     color: darkgray;
     z-index: 999;
     transition: all 0.5s ease 0s;
 }
+
 .conversorInput:hover i {
     color: black;
     transition: all 0.5s ease 0s;
 }
 
 /* Responsive */
-@media(max-width: 990px){
-    .precio{
+
+@media(max-width: 990px) {
+    /* Fondo */
+    .fondo {
+        background: rgba(17, 70, 70, 0.137);
+        height: 100%;
+    }
+    .precio {
         width: 100%;
-    } 
-    .convertidor{
+    }
+    .convertidor {
         width: 100%;
         margin-top: 100px;
         margin-bottom: 20px;
     }
-    .linear{
+    .convertidor h4{
+        text-align: center;
+    }
+    .linear {
         display: flex;
         flex-direction: column;
+    }
+    .tabla {
+        min-width: 300px;
+        max-width: 650px !important;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 20px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 }

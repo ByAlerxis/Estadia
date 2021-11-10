@@ -95,6 +95,16 @@ export class UserCasaComponent implements OnInit {
     );
   }
 
+  // validaVacio(valor1) {
+  //   valor1 = valor1.replace('&nbsp;', '');
+  //   valor1 = valor1 == undefined ? '' : valor1;
+  //   if (!valor1 || 0 === valor1.trim().length) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
   convertir() {
     var valor = parseFloat(
       (<HTMLInputElement>document.getElementById('cantidad')).value
@@ -111,25 +121,39 @@ export class UserCasaComponent implements OnInit {
     // var accion = (<HTMLInputElement>document.getElementById('accion')).value;
     var resultadoContenedor = document.getElementById('resultado');
 
+    if (valor == 0 || valor == undefined || valor == NaN) {
+      M.toast({
+        html: 'Error al convertir.',
+      });
+    } else {
+      if (de == 'peso' && a == 'dolar') {
+        let resultado = (valor / dolarVenta).toFixed(2);
+        resultadoContenedor!.innerHTML = 'Resultado: $' + resultado + ' ';
+      }
+      //DOLAR A PESO
+      else if (de == 'dolar' && a == 'peso') {
+        let resultado = (valor * dolarCompra).toFixed(2);
+        resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
+      }
+      //PESO A PESO O DOLAR
+      else if (de == 'peso' && a == 'peso') {
+        M.toast({
+          html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
+        });
+      } else if (de == 'dolar' && a == 'dolar') {
+        M.toast({
+          html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
+        });
+      }
+    }
+  }
 
-    if (de == 'peso' && a == 'dolar') {
-      let resultado = (valor / dolarVenta).toFixed(2);
-      resultadoContenedor!.innerHTML = 'Resultado: $' + resultado + ' ';
-    }
-    //DOLAR A PESO
-    else if (de == 'dolar' && a == 'peso') {
-      let resultado = (valor * dolarCompra).toFixed(2);
-      resultadoContenedor!.innerHTML = 'Resultado: $' + resultado;
-    }
-    //PESO A PESO O DOLAR
-    else if (de == 'peso' && a == 'peso') {
-      M.toast({
-        html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
-      });
-    } else if (de == 'dolar' && a == 'dolar') {
-      M.toast({
-        html: 'No es posible realizar esta operacion, seleccione correctamente su divisa.',
-      });
+  soloNumeros(event: any) {
+    if ((event > 47 && event < 58) || event == 8 || event == 13) {
+      return true;
+    } else {
+      M.toast({ html: 'Ingresar solo numeros.' });
+      return false;
     }
   }
 }

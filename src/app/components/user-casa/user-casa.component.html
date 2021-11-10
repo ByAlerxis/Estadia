@@ -42,8 +42,8 @@
                 <div class="">
                     <div class="input-field col s12 customInput">
                         <i class="material-icons prefix">monetization_on</i>
-                        <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="text" name="dllC"
-                            placeholder="{{dollar.dllC}}" autocomplete="off">
+                        <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="number" name="dllC"
+                            placeholder="{{dollar.dllC}}" autocomplete="off" (keypress)='soloNumeros($event)'>
                     </div>
                 </div>
             </div>
@@ -53,8 +53,8 @@
                 <div class="">
                     <div class="input-field col s12 customInput">
                         <i class="material-icons prefix">monetization_on</i>
-                        <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="text" name="dllV"
-                            placeholder="{{dollar.dllV}}" autocomplete="off">
+                        <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="number" name="dllV"
+                            placeholder="{{dollar.dllV}}" autocomplete="off" (keypress)='soloNumeros($event)'>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                 <div class="input-field  conversorInput">
                     <i class="material-icons prefix">monetization_on</i>
                     <input class="browser-default" id="cantidad" name="cantidad" type="text"
-                        placeholder="Ingrese la cantidad.">
+                        placeholder="Ingrese la cantidad." autocomplete="off" value="0.00" (keypress)='soloNumeros($event)'>
                 </div>
 
                 <div class="opcion">
