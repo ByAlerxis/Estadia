@@ -5,7 +5,7 @@ import { CasasService } from 'src/app/services/casas.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthCasaService } from 'src/app/services/auth-casa.service';
 import { Casas } from 'src/app/models/casas';
-import { Dollar } from 'src/app/models/dollar';
+import { Dollar, Dollar2 } from 'src/app/models/dollar';
 import * as moment from 'moment';
 
 declare var M: any;
@@ -27,6 +27,11 @@ export class UserCasaComponent implements OnInit {
     dllV: 0,
     dllC: 0,
     nombre_negocio: '',
+  };
+
+  dollar2: Dollar2 = {
+    dllV: 0,
+    dllC: 0,
   };
 
   constructor(
@@ -51,8 +56,18 @@ export class UserCasaComponent implements OnInit {
     if (this.casaId) {
       this.casasService.getCasasById(this.casaId).subscribe(
         (res) => {
-          console.log(res);
+          // console.log(res);
           this.dollar = res;
+        },
+        (err) => console.log(err)
+      );
+    }
+
+    if (this.casaId) {
+      this.casasService.getCasasById(this.casaId).subscribe(
+        (res) => {
+          // console.log(res);
+          this.dollar2 = res;
         },
         (err) => console.log(err)
       );
@@ -70,9 +85,9 @@ export class UserCasaComponent implements OnInit {
   }
 
   updateDollar() {
-    moment.locale('es');
-    this.hoy = moment().format('MMMM Do YYYY, h:mm:ss a');
-    console.log(this.hoy);
+    // moment.locale('es');
+    // this.hoy = moment().format('MMMM Do YYYY, h:mm:ss a');
+    // console.log(this.hoy);
 
     // var car = { car: this.hoy };
     // this.dollar.historial_dolar_main = car;
@@ -90,20 +105,11 @@ export class UserCasaComponent implements OnInit {
     this.casasService.updateDollar(this.casaId, this.dollar).subscribe(
       (res) => {
         M.toast({ html: 'Precio actualizado exitosamente' });
+        this.router.navigate(['/signin']);
       },
       (err) => console.error(err)
     );
   }
-
-  // validaVacio(valor1) {
-  //   valor1 = valor1.replace('&nbsp;', '');
-  //   valor1 = valor1 == undefined ? '' : valor1;
-  //   if (!valor1 || 0 === valor1.trim().length) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 
   convertir() {
     var valor = parseFloat(
@@ -149,7 +155,19 @@ export class UserCasaComponent implements OnInit {
   }
 
   soloNumeros(event: any) {
-    if ((event > 47 && event < 58) || event == 8 || event == 13) {
+    if (
+      event.key == 0 ||
+      event.key == 1 ||
+      event.key == 2 ||
+      event.key == 3 ||
+      event.key == 4 ||
+      event.key == 5 ||
+      event.key == 6 ||
+      event.key == 7 ||
+      event.key == 8 ||
+      event.key == 9 ||
+      event.key == '.'
+    ) {
       return true;
     } else {
       M.toast({ html: 'Ingresar solo numeros.' });

@@ -24,8 +24,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ dollar.dllC }}</td>
-                        <td>{{ dollar.dllV }}</td>
+                        <td>{{ dollar2.dllC }}</td>
+                        <td>{{ dollar2.dllV }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -42,7 +42,7 @@
                 <div class="">
                     <div class="input-field col s12 customInput">
                         <i class="material-icons prefix">monetization_on</i>
-                        <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="number" name="dllC"
+                        <input [(ngModel)]="dollar.dllC" class="browser-default" id="dllC" type="text" name="dllC"
                             placeholder="{{dollar.dllC}}" autocomplete="off" (keypress)='soloNumeros($event)'>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                 <div class="">
                     <div class="input-field col s12 customInput">
                         <i class="material-icons prefix">monetization_on</i>
-                        <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="number" name="dllV"
+                        <input [(ngModel)]="dollar.dllV" class="browser-default" id="dllV" type="text" name="dllV"
                             placeholder="{{dollar.dllV}}" autocomplete="off" (keypress)='soloNumeros($event)'>
                     </div>
                 </div>
