@@ -8,7 +8,7 @@ import { SigninComponent } from './components/signin/signin.component';
 
 import { AuthAdminGuard } from './auth-admin.guard';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { CasasComponent } from './components/casas/casas.component';
 import { UserCasaComponent } from './components/user-casa/user-casa.component';
@@ -26,7 +26,8 @@ import { UserCasaComponent } from './components/user-casa/user-casa.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [AuthAdminGuard],
   bootstrap: [AppComponent]

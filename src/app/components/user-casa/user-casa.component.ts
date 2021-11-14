@@ -127,9 +127,9 @@ export class UserCasaComponent implements OnInit {
     // var accion = (<HTMLInputElement>document.getElementById('accion')).value;
     var resultadoContenedor = document.getElementById('resultado');
 
-    if (valor == 0 || valor == undefined || valor == NaN) {
+    if (valor == 0) {
       M.toast({
-        html: 'Error al convertir.',
+        html: 'La cantidad debe de ser mayor que cero.',
       });
     } else {
       if (de == 'peso' && a == 'dolar') {

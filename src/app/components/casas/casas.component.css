@@ -43,6 +43,10 @@
     color: gold;
 }
 
+.asd a {
+    cursor: pointer;
+}
+
 @media(max-width: 990px){
 	.table thead{
 		display: none;

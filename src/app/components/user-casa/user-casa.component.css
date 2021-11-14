@@ -67,9 +67,9 @@
     flex-direction: column;
     top: 3vh;
     background-color: white;
-    width: 30%;
     border-radius: 40px 130px;
     height: auto;
+    width: 30%;
 }
 
 .customInput {
@@ -125,8 +125,8 @@
     flex-direction: column;
     background-color: white;
     border-radius: 130px 40px;
-    width: 30%;
     height: auto;
+    width: 30%;
 }
 
 .opcion {
@@ -218,6 +218,7 @@
     }
     .convertidor h4{
         text-align: center;
+        font-size: 25px;
     }
     .linear {
         display: flex;
@@ -232,5 +233,12 @@
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+}
+
+@media(max-width: 1300px){
+    .convertidor h4{
+        text-align: center;
+        font-size: 25px;
     }
 }
