@@ -10,123 +10,116 @@
 </div>
 
 
-<body class="bodyLogin">
-    <div class="row">
-        <!-- Formulario -->
-        <div class="col s12 m12 l5 center card-action">
-            <div class="border">
+<body class="fondo">
+    <div class="linear">
+        <div class="form">
+            <span><b>Formulario</b></span>
+            <form #casaForm="ngForm">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="casasService.selectedCasa._id">
 
-                <div class="row card-content">
-                    <span class="card-title"><b>Formulario</b></span>
-                    <!-- (ngSubmit)="addCasa(userForm)"-->
-                    <form #casaForm="ngForm" (ngSubmit)="addCasa(casaForm)">
-
-                        <div class="row col s12 m10 l10 offset-l1 offset-m1">
-                            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="casasService.selectedCasa._id">
-
-                            <div class="input-field col s12 customInput">
-                                <i class="material-icons prefix">home</i>
-                                <input class="browser-default" id="nombre_negocio" type="text" nombre_negocio="ngModel"
-                                    name="nombre_negocio" placeholder="Ingrese el nombre del negocio"
-                                    [(ngModel)]="casasService.selectedCasa.nombre_negocio" autocomplete="off">
-                                <!-- <label for="nombre_negocio">Nombre del negocio</label> -->
-                            </div>
-
-                            <div class="input-field col s12 customInput">
-                                <i class="material-icons prefix">place</i>
-                                <input class="browser-default" id="direccion" type="text" name="direccion"
-                                    #direccion="ngModel" placeholder="Ingrese direccion de la casa de cambio"
-                                    [(ngModel)]="casasService.selectedCasa.direccion" autocomplete="off">
-                                <!-- <label for="direccion">Direccion</label> -->
-                            </div>
-
-                            <div class="input-field col s12 customInput">
-                                <i class="material-icons prefix">email</i>
-                                <input class="browser-default" id="email" type="text" name="email" #email="ngModel"
-                                    placeholder="Ingrese correo de contacto"
-                                    [(ngModel)]="casasService.selectedCasa.email" autocomplete="off">
-                                <!-- <label for="email">Correo electronico</label> -->
-                            </div>
-
-                            <div class="input-field col s12 customInput">
-                                <i class="material-icons prefix">vpn_key</i>
-                                <input class="browser-default" id="password" type="text" name="password"
-                                    #password="ngModel" placeholder="Ingrese contraseña"
-                                    [(ngModel)]="casasService.selectedCasa.password" autocomplete="off">
-                                <!-- <label for="password">Contraseña</label> -->
-                            </div>
-
-                            <div class="input-field col s12 customInput">
-                                <i class="material-icons prefix">phone</i>
-                                <input class="browser-default" id="telefono" type="text" name="telefono"
-                                    #telefono="ngModel" placeholder="Ingrese el numero de telefono"
-                                    [(ngModel)]="casasService.selectedCasa.telefono" autocomplete="off" (keypress)='soloNumeros($event)'>
-                                <!-- <label for="telefono">Telefono</label> -->
-                            </div>
-                        </div>
-
-                    </form>
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">home</i>
+                    <input class="browser-default" id="nombre_negocio" type="text" nombre_negocio="ngModel"
+                        name="nombre_negocio" placeholder="Ingrese el nombre del negocio"
+                        [(ngModel)]="casasService.selectedCasa.nombre_negocio" autocomplete="off">
                 </div>
 
-                <div class="card-action">
-                    <div class="row">
-                        <div class="col s6">
-                            <a (click)="resetForm(casaForm)" style="width: 100%;"
-                                class="btn col l10 s12 m12 green accent-6 btnL offset-l1 offset-s2 offset-m2">Limpiar
-                                formulario</a>
-                        </div>
-
-                        <div class="col s6">
-                            <a (click)="addCasa(casaForm)" style="width: 100%;"
-                                class="btn col l10 s12 m12 red accent-6 btnL offset-l1 offset-s1 offset-m1">Guardar
-                                casa</a>
-                        </div>
-                    </div>
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">place</i>
+                    <input class="browser-default" id="direccion" type="text" name="direccion" #direccion="ngModel"
+                        placeholder="Ingrese direccion" [(ngModel)]="casasService.selectedCasa.direccion"
+                        autocomplete="off">
                 </div>
 
-            </div>
-        </div>
-        <!-- Tabla -->
-        <div class="col s12 m12 l7 table2">
-            <div class="col s12 m12 l12">
-                <div class="container">
-                    <div class="customInput">
-                        <i class="material-icons prefix">search </i>
-                        <input class="browser-default" type="text" id="searchfield" (keyup)="getCasasByNameAndEmail()"
-                            placeholder="Buscar por nombre o correo">
-                    </div>
-
-                    <table class="content-table table">
-                        <thead>
-                            <tr>
-                                <th>Nombre del negocio</th>
-                                <th>Direccion</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
-                                <th>Operaciones</th>
-                            </tr>
-
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let casas of casasService.casas">
-                                <td>{{ casas.nombre_negocio }}</td>
-                                <td>{{ casas.direccion }}</td>
-                                <td>{{ casas.email }}</td>
-                                <td>{{ casas.telefono }}</td>
-
-                                <td class="asd">
-                                    <a (click)="updateCasa(casas)" style="margin-left: 10px; margin-right: 10px;"><i
-                                            class="material-icons amber-text">edit</i></a>
-                                    <a (click)="deleteCasa(casas._id)" style="margin-left: 10px; margin-right: 10px;"><i
-                                            class="material-icons red-text">delete</i></a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">email</i>
+                    <input class="browser-default" id="email" type="text" name="email" #email="ngModel"
+                        placeholder="Ingrese correo de contacto" [(ngModel)]="casasService.selectedCasa.email"
+                        autocomplete="off">
                 </div>
+
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">vpn_key</i>
+                    <input class="browser-default" id="password" type="text" name="password" #password="ngModel"
+                        placeholder="Ingrese contraseña" [(ngModel)]="casasService.selectedCasa.password"
+                        autocomplete="off">
+                </div>
+
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">map</i>
+                    <input class="browser-default" id="longitud" type="text" name="longitud" #longitud="ngModel"
+                        placeholder="Ingrese la longitud" [(ngModel)]="casasService.selectedCasa.longitud"
+                        autocomplete="off" (keypress)='soloNumeros($event)'>
+                </div>
+
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">map</i>
+                    <input class="browser-default" id="latitud" type="text" name="latitud" #latitud="ngModel"
+                        placeholder="Ingrese la latitud" [(ngModel)]="casasService.selectedCasa.latitud"
+                        autocomplete="off" (keypress)='soloNumeros($event)'>
+                </div>
+
+
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">phone</i>
+                    <input class="browser-default" id="telefono" type="text" name="telefono" #telefono="ngModel"
+                        placeholder="Ingrese el numero de telefono" [(ngModel)]="casasService.selectedCasa.telefono"
+                        autocomplete="off" (keypress)='soloNumeros($event)'>
+                </div>
+            </form>
+
+            <div class="botton">
+                <a (click)="resetForm(casaForm)" style="width: 100%;" class="btn green accent-6">Limpiar</a>
+                <a (click)="addCasa(casaForm)" style="width: 100%;" class="btn red accent-6">Guardar</a>
             </div>
 
         </div>
     </div>
+
+
+    <div class="container1">
+        <div class="customInput2 buscador">
+            <i class="material-icons prefix">search</i>
+            <input class="browser-default" placeholder="Buscar por nombre o correo" type="text" id="searchfield"
+                (keyup)="getCasasByNameAndEmail()">
+        </div>
+        <div class="tabla">
+            <table class="content-table table">
+                <thead>
+                    <tr>
+                        <th>Nombre del negocio</th>
+                        <th>Direccion</th>
+                        <th>Correo</th>
+                        <th>Longitud</th>
+                        <th>Latitud</th>
+                        <th>Telefono</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let casas of casasService.casas">
+                        <td>{{ casas.nombre_negocio }}</td>
+                        <td>{{ casas.direccion }}</td>
+                        <td>{{ casas.email }}</td>
+                        <td>{{ casas.longitud }}</td>
+                        <td>{{ casas.latitud }}</td>
+                        <td>{{ casas.telefono }}</td>
+                        <div class="ab">
+                            <a class="a" (click)="updateCasa(casas)"><i
+                                    class="material-icons amber-text">mode_edit</i></a>
+                            <a class="b" (click)="deleteCasa(casas._id)"><i
+                                    class="material-icons red-text">delete</i></a>
+                        </div>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+
 </body>

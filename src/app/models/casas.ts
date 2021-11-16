@@ -6,13 +6,15 @@ export class Casas {
     email: string;
     password: string;
     logo: string;
-    telefono: number;
+    telefono: string;
     dllV: number;
     dllC: number;
     historial_put: string;
+    latitud: string;
+    longitud: string;
 
-    constructor(_id = '', id = 0, nombre_negocio ='', direccion = '', 
-    email = '', password = '', logo = '', telefono = 0, dllV = 0, dllC = 0, historial_put = '') {
+    constructor(_id = '', latitud = '', longitud = '',  id = 0, nombre_negocio ='', direccion = '', 
+    email = '', password = '', logo = '', telefono = '', dllV = 0, dllC = 0, historial_put = '') {
         this._id = _id;
         this.id = id;
         this.nombre_negocio = nombre_negocio;
@@ -24,5 +26,7 @@ export class Casas {
         this.dllC = dllC;
         this.dllV = dllV;
         this.historial_put = historial_put;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 }

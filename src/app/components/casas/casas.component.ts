@@ -59,8 +59,10 @@ export class CasasComponent implements OnInit {
       .value;
     var telefono = (<HTMLInputElement>document.getElementById('telefono'))
       .value;
-
-      console.log(telefono);
+    var longitud = (<HTMLInputElement>document.getElementById('longitud'))
+      .value;
+    var latitud = (<HTMLInputElement>document.getElementById('latitud'))
+      .value;
 
     if (
       nombre_negocio.length == 0 ||
@@ -68,7 +70,9 @@ export class CasasComponent implements OnInit {
       email.length == 0 ||
       password.length == 0 ||
       telefono.length == 0 ||
-      telefono.length == 1
+      telefono.length == 1 ||
+      longitud.length == 0 ||
+      latitud.length == 0
     ) {
       M.toast({ html: 'Los campos no deben estar vacios.' });
     } else {
