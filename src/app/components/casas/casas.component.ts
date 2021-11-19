@@ -6,6 +6,8 @@ import { AuthCasaService } from 'src/app/services/auth-casa.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { AuthAdminService } from 'src/app/services/auth-admin.service';
+import { Loader } from '@googlemaps/js-api-loader';
+import { Coords } from 'src/app/models/casas';
 
 declare var M: any;
 
@@ -27,6 +29,7 @@ export class CasasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.iniciarMapa();
     this.getCasas();
 
     this.token = localStorage.getItem('token');
@@ -39,6 +42,44 @@ export class CasasComponent implements OnInit {
     } else {
       this.router.navigate(['/singin']);
     }
+  }
+
+  iniciarMapa(){
+    let latitud = 24.03493759556703;
+    let longitud = -102.35169966163187;
+
+    let coordenadas = {
+      latitud: latitud,
+      longitud: longitud
+    }
+
+    this.googleMaps(coordenadas);
+  }
+
+  googleMaps(coordenadas: Coords) {
+    let loader = new Loader({
+      apiKey: 'AIzaSyBs-wiWc7Kb6f2-DZj94Rti3H7ePK2CKYE',
+    });
+
+    loader.load().then(() => {
+      let mapa = new google.maps.Map(<HTMLInputElement>document.getElementById('map'), {
+        center: new google.maps.LatLng(coordenadas.latitud, coordenadas.longitud),
+        zoom: 4.7,
+      });
+
+      let marcador = new google.maps.Marker({
+        map: mapa,
+        draggable: true,
+        position: new google.maps.LatLng(coordenadas.latitud, coordenadas.longitud),
+      });
+
+      marcador.addListener('dragend', function(marcador: any, event: any){
+        // (<HTMLInputElement>document.getElementById('latitud')).value = this.getPosition().lat();
+        console.log(marcador.addListener)
+        // (<HTMLInputElement>document.getElementById('longitud')).value = this.getPosition().lng();
+      });
+
+    });
   }
 
   resetForm(form?: NgForm) {
@@ -61,8 +102,7 @@ export class CasasComponent implements OnInit {
       .value;
     var longitud = (<HTMLInputElement>document.getElementById('longitud'))
       .value;
-    var latitud = (<HTMLInputElement>document.getElementById('latitud'))
-      .value;
+    var latitud = (<HTMLInputElement>document.getElementById('latitud')).value;
 
     if (
       nombre_negocio.length == 0 ||

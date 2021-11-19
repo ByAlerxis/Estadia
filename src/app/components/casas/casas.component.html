@@ -45,20 +45,19 @@
                         autocomplete="off">
                 </div>
 
-                <div class="input-field col s12 customInput">
-                    <i class="material-icons prefix">map</i>
-                    <input class="browser-default" id="longitud" type="text" name="longitud" #longitud="ngModel"
-                        placeholder="Ingrese la longitud" [(ngModel)]="casasService.selectedCasa.longitud"
-                        autocomplete="off" (keypress)='soloNumeros($event)'>
-                </div>
-
-                <div class="input-field col s12 customInput">
+                 <div class="input-field col s12 customInput">
                     <i class="material-icons prefix">map</i>
                     <input class="browser-default" id="latitud" type="text" name="latitud" #latitud="ngModel"
                         placeholder="Ingrese la latitud" [(ngModel)]="casasService.selectedCasa.latitud"
                         autocomplete="off" (keypress)='soloNumeros($event)'>
                 </div>
 
+                <div class="input-field col s12 customInput">
+                    <i class="material-icons prefix">map</i>
+                    <input class="browser-default" id="longitud" type="text" name="longitud" #longitud="ngModel"
+                        placeholder="Ingrese la longitud" [(ngModel)]="casasService.selectedCasa.longitud"
+                        autocomplete="off" (keypress)='soloNumeros($event)'>
+                </div>
 
                 <div class="input-field col s12 customInput">
                     <i class="material-icons prefix">phone</i>
@@ -72,6 +71,10 @@
                 <a (click)="resetForm(casaForm)" style="width: 100%;" class="btn green accent-6">Limpiar</a>
                 <a (click)="addCasa(casaForm)" style="width: 100%;" class="btn red accent-6">Guardar</a>
             </div>
+
+        </div>
+
+        <div class="map" id="map">
 
         </div>
     </div>

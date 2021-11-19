@@ -10,10 +10,10 @@ export class Casas {
     dllV: number;
     dllC: number;
     historial_put: string;
-    latitud: string;
-    longitud: string;
+    latitud: number;
+    longitud: number;
 
-    constructor(_id = '', latitud = '', longitud = '',  id = 0, nombre_negocio ='', direccion = '', 
+    constructor(_id = '', latitud = 0, longitud = 0,  id = 0, nombre_negocio ='', direccion = '', 
     email = '', password = '', logo = '', telefono = '', dllV = 0, dllC = 0, historial_put = '') {
         this._id = _id;
         this.id = id;
@@ -29,4 +29,9 @@ export class Casas {
         this.latitud = latitud;
         this.longitud = longitud;
     }
+}
+
+export interface Coords {
+    latitud: number;
+    longitud: number;
 }

@@ -5,6 +5,10 @@
     height: 100%;
 }
 
+.map{
+    width: 30%;
+}
+
 .linear {
     padding-top: 50px;
     display: flex;
