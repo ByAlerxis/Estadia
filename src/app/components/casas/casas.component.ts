@@ -44,14 +44,14 @@ export class CasasComponent implements OnInit {
     }
   }
 
-  iniciarMapa(){
+  iniciarMapa() {
     let latitud = 24.03493759556703;
     let longitud = -102.35169966163187;
 
     let coordenadas = {
       latitud: latitud,
-      longitud: longitud
-    }
+      longitud: longitud,
+    };
 
     this.googleMaps(coordenadas);
   }
@@ -62,23 +62,32 @@ export class CasasComponent implements OnInit {
     });
 
     loader.load().then(() => {
-      let mapa = new google.maps.Map(<HTMLInputElement>document.getElementById('map'), {
-        center: new google.maps.LatLng(coordenadas.latitud, coordenadas.longitud),
-        zoom: 4.7,
-      });
+      let mapa = new google.maps.Map(
+        <HTMLInputElement>document.getElementById('map'),
+        {
+          center: new google.maps.LatLng(
+            coordenadas.latitud,
+            coordenadas.longitud
+          ),
+          zoom: 4.7,
+        }
+      );
 
       let marcador = new google.maps.Marker({
         map: mapa,
         draggable: true,
-        position: new google.maps.LatLng(coordenadas.latitud, coordenadas.longitud),
+        position: new google.maps.LatLng(
+          coordenadas.latitud,
+          coordenadas.longitud
+        ),
       });
 
-      marcador.addListener('dragend', function(marcador: any, event: any){
-        // (<HTMLInputElement>document.getElementById('latitud')).value = this.getPosition().lat();
-        console.log(marcador.addListener)
-        // (<HTMLInputElement>document.getElementById('longitud')).value = this.getPosition().lng();
+      marcador.addListener('dragend', function (this: any, event: any) {
+        (<HTMLInputElement>document.getElementById('latitud')).value =
+          this.getPosition().lat().toFixed(6);
+        (<HTMLInputElement>document.getElementById('longitud')).value =
+          this.getPosition().lng().toFixed(6);
       });
-
     });
   }
 
@@ -86,6 +95,7 @@ export class CasasComponent implements OnInit {
     if (form) {
       form.reset();
       this.getCasas();
+      this.iniciarMapa();
     }
   }
 
@@ -118,6 +128,11 @@ export class CasasComponent implements OnInit {
     } else {
       if (form) {
         if (form.value._id) {
+
+          form.value.latitud = (<HTMLInputElement>document.getElementById('latitud')).value;
+          form.value.longitud = (<HTMLInputElement>document.getElementById('longitud'))
+          .value;
+
           this.casasService.putCasa(form.value).subscribe((res) => {
             this.resetForm(form);
             M.toast({ html: 'Casa actualizado exitosamente' });
@@ -125,6 +140,9 @@ export class CasasComponent implements OnInit {
           });
         } else {
           delete form.value._id;
+          form.value.latitud = (<HTMLInputElement>document.getElementById('latitud')).value;
+          form.value.longitud = (<HTMLInputElement>document.getElementById('longitud'))
+          .value;
           this.casasService.postCasa(form.value).subscribe((res) => {
             this.resetForm(form);
             M.toast({ html: 'Casa guardado exitosamente' });
@@ -135,6 +153,35 @@ export class CasasComponent implements OnInit {
     }
   }
 
+  focus() {
+    let mapa = new google.maps.Map(
+      <HTMLInputElement>document.getElementById('map'),
+      {
+        center: new google.maps.LatLng(
+          this.casasService.selectedCasa.latitud,
+          this.casasService.selectedCasa.longitud
+        ),
+        zoom: 16,
+      }
+    );
+
+    let marcador = new google.maps.Marker({
+      map: mapa,
+      draggable: true,
+      position: new google.maps.LatLng(
+        this.casasService.selectedCasa.latitud,
+        this.casasService.selectedCasa.longitud
+      ),
+    });
+
+    marcador.addListener('dragend', function (this: any, event: any) {
+      (<HTMLInputElement>document.getElementById('latitud')).value =
+        this.getPosition().lat().toFixed(6);
+      (<HTMLInputElement>document.getElementById('longitud')).value =
+        this.getPosition().lng().toFixed(6);
+    });
+  }
+
   getCasas() {
     this.casasService.getCasas().subscribe((res) => {
       this.casasService.casas = res as Casas[];
@@ -143,6 +190,7 @@ export class CasasComponent implements OnInit {
 
   updateCasa(casa: Casas) {
     this.casasService.selectedCasa = casa;
+    this.focus();
   }
 
   deleteCasa(_id: string) {
@@ -150,6 +198,8 @@ export class CasasComponent implements OnInit {
       this.casasService.deleteCasa(_id).subscribe((res) => {
         this.getCasas();
         M.toast({ html: 'Casa eliminado exitosamente' });
+        this.resetForm();
+        this.iniciarMapa();
       });
     }
   }
