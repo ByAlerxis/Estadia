@@ -6,7 +6,9 @@
 }
 
 .map{
-    width: 30%;
+    width: 50%;
+    border-radius: 40px;
+    border: #3AAEAB 5px solid;
 }
 
 .linear {
