@@ -1,5 +1,9 @@
 /* Fondo */
 
+.error{
+    color: red;
+}
+
 .fondo {
     background: rgba(17, 70, 70, 0.137);
     height: 93.4vh;

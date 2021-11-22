@@ -49,14 +49,14 @@
                     <i class="material-icons prefix">map</i>
                     <input class="browser-default" id="latitud" type="text" name="latitud" #latitud="ngModel"
                         placeholder="Ingrese la latitud" [(ngModel)]="casasService.selectedCasa.latitud"
-                        autocomplete="off" (keypress)='soloNumeros($event)' value="23">
+                        autocomplete="off" (keypress)='soloNumeros($event)' disabled>
                 </div>
 
                 <div class="input-field col s12 customInput">
                     <i class="material-icons prefix">map</i>
                     <input class="browser-default" id="longitud" type="text" name="longitud" #longitud="ngModel"
                         placeholder="Ingrese la longitud" [(ngModel)]="casasService.selectedCasa.longitud"
-                        autocomplete="off" (keypress)='soloNumeros($event)'>
+                        autocomplete="off" (keypress)='soloNumeros($event)' disabled>
                 </div>
 
                 <div class="input-field col s12 customInput">

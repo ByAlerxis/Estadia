@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
     
     if(this.authAdminService.decodedToken.rol == "SuperAdmin"){
-     
+      this.router.navigate(['/home/admins']);
     } else{
       this.router.navigate(['/casas']);
     }

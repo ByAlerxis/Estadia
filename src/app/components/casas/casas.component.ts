@@ -39,6 +39,7 @@ export class CasasComponent implements OnInit {
       this.authAdminService.decodedToken.rol == 'Admin' ||
       this.authAdminService.decodedToken.rol == 'SuperAdmin'
     ) {
+      this.router.navigate(['/home/casas']);
     } else {
       this.router.navigate(['/singin']);
     }
@@ -91,6 +92,19 @@ export class CasasComponent implements OnInit {
     });
   }
 
+  esEmailValido(): boolean {
+    let correo = (<HTMLInputElement>document.getElementById('email')).value;
+    let expReg =
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let esValido = expReg.test(correo);
+
+    if (esValido == true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   resetForm(form?: NgForm) {
     if (form) {
       form.reset();
@@ -110,9 +124,6 @@ export class CasasComponent implements OnInit {
       .value;
     var telefono = (<HTMLInputElement>document.getElementById('telefono'))
       .value;
-    var longitud = (<HTMLInputElement>document.getElementById('longitud'))
-      .value;
-    var latitud = (<HTMLInputElement>document.getElementById('latitud')).value;
 
     if (
       nombre_negocio.length == 0 ||
@@ -120,18 +131,18 @@ export class CasasComponent implements OnInit {
       email.length == 0 ||
       password.length == 0 ||
       telefono.length == 0 ||
-      telefono.length == 1 ||
-      longitud.length == 0 ||
-      latitud.length == 0
+      telefono.length == 1
     ) {
       M.toast({ html: 'Los campos no deben estar vacios.' });
     } else {
       if (form) {
         if (form.value._id) {
-
-          form.value.latitud = (<HTMLInputElement>document.getElementById('latitud')).value;
-          form.value.longitud = (<HTMLInputElement>document.getElementById('longitud'))
-          .value;
+          form.value.latitud = (<HTMLInputElement>(
+            document.getElementById('latitud')
+          )).value;
+          form.value.longitud = (<HTMLInputElement>(
+            document.getElementById('longitud')
+          )).value;
 
           this.casasService.putCasa(form.value).subscribe((res) => {
             this.resetForm(form);
@@ -140,14 +151,32 @@ export class CasasComponent implements OnInit {
           });
         } else {
           delete form.value._id;
-          form.value.latitud = (<HTMLInputElement>document.getElementById('latitud')).value;
-          form.value.longitud = (<HTMLInputElement>document.getElementById('longitud'))
-          .value;
-          this.casasService.postCasa(form.value).subscribe((res) => {
-            this.resetForm(form);
-            M.toast({ html: 'Casa guardado exitosamente' });
-            this.getCasas();
-          });
+          if (this.esEmailValido() == true) {
+            form.value.latitud = (<HTMLInputElement>(
+              document.getElementById('latitud')
+            )).value;
+            form.value.longitud = (<HTMLInputElement>(
+              document.getElementById('longitud')
+            )).value;
+
+            let longitud = (<HTMLInputElement>(
+              document.getElementById('longitud')
+            )).value;
+            let latitud = (<HTMLInputElement>document.getElementById('latitud'))
+              .value;
+
+            if (parseInt(longitud) == 0 || parseInt(latitud) == 0 || latitud == '' || longitud == '') {
+              M.toast({ html: 'Seleccione las coordenadas en el mapa.' });
+            } else {
+              this.casasService.postCasa(form.value).subscribe((res) => {
+                this.resetForm(form);
+                M.toast({ html: 'Casa guardado exitosamente' });
+                this.getCasas();
+              });
+            }
+          } else if (this.esEmailValido() == false) {
+            M.toast({ html: 'El correo no es valido.' });
+          }
         }
       }
     }

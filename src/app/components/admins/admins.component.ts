@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Admins } from 'src/app/models/admins';
 import { AdminsService } from 'src/app/services/admins.service';
 import { AuthAdminService } from 'src/app/services/auth-admin.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 declare var M: any;
 
@@ -13,13 +15,30 @@ declare var M: any;
   providers: [AdminsService],
 })
 export class AdminsComponent implements OnInit {
+
+  helper = new JwtHelperService();
+  decodedToken: any;
+  token: any;
+  
   constructor(
     public adminsService: AdminsService,
-    public authAdminService: AuthAdminService
+    public authAdminService: AuthAdminService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getAdmins();
+
+    
+    this.token = localStorage.getItem('token');
+    this.authAdminService.decodedToken = this.helper.decodeToken(this.token);
+    
+    if(this.authAdminService.decodedToken.rol == "SuperAdmin"){
+      this.router.navigate(['/home/admins'])
+    } else{
+      this.router.navigate(['/casas']);
+    }
+
   }
 
   resetForm(form?: NgForm) {
@@ -32,10 +51,16 @@ export class AdminsComponent implements OnInit {
   addAdmin(form?: NgForm) {
     var nombre = (<HTMLInputElement>document.getElementById('nombre')).value;
     var email = (<HTMLInputElement>document.getElementById('email')).value;
-    var password = (<HTMLInputElement>document.getElementById('password')).value;
+    var password = (<HTMLInputElement>document.getElementById('password'))
+      .value;
     var rol = (<HTMLInputElement>document.getElementById('rol')).value;
 
-    if (nombre.length == 0 || email.length == 0 || password.length == 0 || rol.length == 0) {
+    if (
+      nombre.length == 0 ||
+      email.length == 0 ||
+      password.length == 0 ||
+      rol.length == 0
+    ) {
       M.toast({ html: 'Los campos no deben estar vacios.' });
     } else {
       if (form) {
@@ -47,13 +72,33 @@ export class AdminsComponent implements OnInit {
           });
         } else {
           delete form.value._id;
-          this.adminsService.postAdmins(form.value).subscribe((res) => {
-            this.resetForm(form);
-            M.toast({ html: 'Usuario guardado exitosamente' });
-            this.getAdmins();
-          });
+
+          if (this.esEmailValido() == true) {
+            (<HTMLInputElement>document.getElementById('c')).innerHTML = '';
+            this.adminsService.postAdmins(form.value).subscribe((res) => {
+              this.resetForm(form);
+              M.toast({ html: 'Usuario guardado exitosamente' });
+              this.getAdmins();
+            });
+          } else {
+            M.toast({ html: 'El correo no es valido.' });
+            (<HTMLInputElement>document.getElementById('c')).innerHTML = '* Correo invalido';
+          }
         }
       }
+    }
+  }
+
+  esEmailValido(): boolean {
+    let correo = (<HTMLInputElement>document.getElementById('email')).value;
+    let expReg =
+      /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    let esValido = expReg.test(correo);
+    
+    if (esValido == true) {
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -72,6 +117,7 @@ export class AdminsComponent implements OnInit {
       this.adminsService.deleteAdmins(_id).subscribe((res) => {
         this.getAdmins();
         M.toast({ html: 'Usuario eliminado exitosamente' });
+        this.resetForm();
       });
     }
   }
